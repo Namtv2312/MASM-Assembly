@@ -1,0 +1,3 @@
+﻿  triangle.c
+F:\ASM tutorial\Code\ASM MASM tutorial\triangle.c(6,8): warning C4013: 'execve' undefined; assuming extern returning int
+  ASM MASM tutorial.vcxproj -> F:\ASM tutorial\Code\ASM MASM tutorial\Debug\ASM MASM tutorial.exe

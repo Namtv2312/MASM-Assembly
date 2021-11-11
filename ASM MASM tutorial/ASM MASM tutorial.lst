@@ -1,0 +1,66 @@
+Microsoft (R) Macro Assembler Version 14.29.30040.0	    11/05/21 10:17:18
+16bit.asm						     Page 1 - 1
+
+
+				; Hello World Program (Hello.asm)
+				.MODEL small
+				.STACK 100h
+				.386
+ 0000				.data
+ 0000 48 65 6C 6C 6F 2C		message BYTE "Hello, world!",0dh,0ah
+       20 77 6F 72 6C 64
+       21 0D 0A
+ 0000				.code
+ 0000				main PROC
+				mov ax,@data ; initialize DS
+16bit.asm(9) : error A2006:undefined symbol : DGROUP
+ 0000  8E D8			mov ds,ax
+ 0002  B4 40			mov ah,40h ; write to file/device
+ 0004  BB 0001			mov bx,1 ; output handle
+ 0007  B9 000F			mov cx,SIZEOF message ; number of bytes
+ 000A  BA 0000 R		mov dx,OFFSET message ; addr of buffer
+ 000D  CD 21			int 21h
+				.EXIT
+ 000F  B4 4C		   *	    mov    ah, 04Ch
+ 0011  CD 21		   *	    int    021h
+ 0013				main ENDP
+				END main
+Microsoft (R) Macro Assembler Version 14.29.30040.0	    11/05/21 10:17:18
+16bit.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+STACK  . . . . . . . . . . . . .	16 Bit	 0100	  Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	16 Bit	 000F	  Word	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	16 Bit	 001E	  Word	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+main . . . . . . . . . . . . . .	P Near	 0000	  _TEXT	Length= 001E Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 0000h	 
+@DataSize  . . . . . . . . . . .	Number	 0000h	 
+@Interface . . . . . . . . . . .	Number	 0000h	 
+@Model . . . . . . . . . . . . .	Number	 0002h	 
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 DGROUP
+@fardata?  . . . . . . . . . . .	Text   	 FAR_BSS
+@fardata . . . . . . . . . . . .	Text   	 FAR_DATA
+@stack . . . . . . . . . . . . .	Text   	 DGROUP
+message  . . . . . . . . . . . .	Byte	 0000	  _DATA	
+
+	   1 Warnings
+	   1 Errors
