@@ -1,0 +1,60 @@
+.model small 
+.stack 100h
+.data
+    msg1 db "So luong SNT: $"
+    chuoi db 23,1,11,-13,33,10,5
+    count dw 0    
+.code
+main proc
+    mov ax,@data
+    mov ds,ax
+    mov ah,9
+    lea dx,msg1
+    int 21h
+    lea si,chuoi 
+    xor cx,cx
+    mov cl,7
+ktr_snt: 
+    xor ah,ah
+    mov al,[si]
+    mov bx,2
+    cmp ax,bx
+    jle kpSNT
+    jz SNT
+    lap:
+        xor dx,dx
+        mov al,[si] 
+        div bx
+        cmp dx,0
+        jz kpSNT
+        inc bx
+        mov al,[si]
+        cmp bx,ax
+        jb lap
+    SNT:
+        inc count
+    kpSNT:
+        inc si
+        loop ktr_snt
+    mov ax,count
+    mov bx,10
+    xor cx,cx 
+    lap_push:
+        xor dx,dx
+        div bx
+        push dx
+        inc cx
+        cmp ax,0
+        je hienthi
+        jmp lap_push 
+    hienthi:
+        pop dx
+        add dx,30h
+        mov ah,2
+        int 21h
+        loop hienthi    
+thoat:
+    mov ah,4ch
+    int 21h    
+    main endp
+end main
