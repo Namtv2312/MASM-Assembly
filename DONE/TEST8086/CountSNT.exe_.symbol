@@ -1,0 +1,24 @@
+< THE SYMBOL TABLE >  CountSNT.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+XDONG                    	00000     	1         	VAR       	data      
+OUTPUT                   	00003     	1         	VAR       	data      
+CHUOI                    	00023     	1         	VAR       	data      
+DEM                      	00031     	2         	VAR       	data      
+CODE                     	00014     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+COUNT_SNT                	00007     	-1        	LABEL     	code      
+LAP                      	00014     	-1        	LABEL     	code      
+LAP2                     	00021     	-1        	LABEL     	code      
+SNT                      	00033     	-1        	LABEL     	code      
+KHONGPHAISNT             	00038     	-1        	LABEL     	code      
+_PUSH                    	00043     	-1        	LABEL     	code      
+HIENTHI                  	00050     	-1        	LABEL     	code      
+THOAT                    	0005A     	-1        	LABEL     	code      
+===================================================================================================
+[ 11/07/2022  --  11:23:30 ] 
+< END >
+ 

@@ -1,0 +1,33 @@
+< THE SYMBOL TABLE >  msv2Name_CounChar.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+MSG1                     	00000     	1         	VAR       	data      
+MSG2                     	0000D     	1         	VAR       	data      
+MSG3                     	00022     	1         	VAR       	data      
+XDONG                    	0003D     	1         	VAR       	data      
+MSV1                     	00040     	1         	VAR       	data      
+MSV2                     	00048     	1         	VAR       	data      
+STR                      	00050     	1         	VAR       	data      
+MSG4                     	00078     	1         	VAR       	data      
+MSG5                     	00087     	1         	VAR       	data      
+STR2                     	000A0     	1         	VAR       	data      
+COUNT                    	00106     	1         	VAR       	data      
+CODE                     	00021     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+NHAPMSV                  	00007     	-1        	LABEL     	code      
+KIEMTRA                  	00017     	-1        	LABEL     	code      
+NHAPLAI                  	00035     	-1        	LABEL     	code      
+INTB1                    	00045     	-1        	LABEL     	code      
+NHAP_CHUOI               	0004C     	-1        	LABEL     	code      
+LAP_NHAP                 	00058     	-1        	LABEL     	code      
+ENDSTRING                	0006A     	-1        	LABEL     	code      
+LAPCHIA                  	0007D     	-1        	LABEL     	code      
+HT                       	0008A     	-1        	LABEL     	code      
+THOAT                    	0009A     	-1        	LABEL     	code      
+===================================================================================================
+[ 10/07/2022  --  23:48:21 ] 
+< END >
+ 

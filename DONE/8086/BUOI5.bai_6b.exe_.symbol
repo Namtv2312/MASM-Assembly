@@ -1,0 +1,19 @@
+< THE SYMBOL TABLE >  BUOI5.bai_6b.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DSEG                     	00000     	-5        	SEGMENT   	(ITSELF)  
+MSG1                     	00000     	1         	VAR       	DSEG      
+MSG2                     	00013     	1         	VAR       	DSEG      
+XDONG                    	00029     	1         	VAR       	DSEG      
+KYTU                     	0002C     	1         	VAR       	DSEG      
+CSEG                     	00003     	-5        	SEGMENT   	(ITSELF)  
+BEGIN                    	00000     	-1        	LABEL     	CSEG      
+HEX_OUT                  	00036     	-1        	NEAR      	CSEG      
+XUAT                     	00039     	-1        	LABEL     	CSEG      
+NHAN                     	0004A     	-1        	LABEL     	CSEG      
+INRA                     	0004D     	-1        	LABEL     	CSEG      
+===================================================================================================
+[ 06/06/2022  --  19:22:41 ] 
+< END >
+ 

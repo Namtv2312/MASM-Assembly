@@ -1,0 +1,23 @@
+< THE SYMBOL TABLE >  BUOI4.bai6.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00004     	-5        	SEGMENT   	(ITSELF)  
+SO                       	00000     	1         	VAR       	data      
+MUOI                     	0000C     	2         	VAR       	data      
+XUONG                    	0000E     	1         	VAR       	data      
+B1                       	0001A     	2         	VAR       	data      
+B2                       	0001C     	2         	VAR       	data      
+TB1                      	0001E     	1         	VAR       	data      
+TB2                      	00032     	1         	VAR       	data      
+CODE                     	00009     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+LAPCHIA                  	00044     	-1        	LABEL     	code      
+HIENTHI                  	00054     	-1        	LABEL     	code      
+XULICHUOI                	0005F     	-1        	NEAR      	code      
+LAP                      	0006A     	-1        	LABEL     	code      
+===================================================================================================
+[ 31/05/2022  --  20:06:03 ] 
+< END >
+ 

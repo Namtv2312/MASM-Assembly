@@ -1,0 +1,140 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+msv2Name_CounAmDUong.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 11/07/2022  --  10:42:54 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       inchuoi macro chuoi
+[   3]        :                                       mov ah,9
+[   4]        :                                       lea dx,chuoi
+[   5]        :                                       int 21h
+[   6]        :                                       endm
+[   7]        :                                       .stack 100h
+[   8]        :                                       .data
+[   9]    0100: 7F 00 FC 82 59 49 DE 91 0B            chuoi db 127,0,-4,-126,89,73,-34,-111,11
+[  10]    0109: 0A 0D 53 6F 20 6C 75 6F 6E 67 20 73   output1 db 10,13,"So luong so nguyen duong: $"
+                6F 20 6E 67 75 79 65 6E 20 64 75 6F 
+                6E 67 3A 20 24                      
+[  11]    0126: 0A 0D 53 6F 20 6C 75 6F 6E 67 20 73   output2 db 10,13,"So luong so nguyen am: $"
+                6F 20 6E 67 75 79 65 6E 20 61 6D 3A 
+                20 24                               
+[  12]    0140: 00 00                                 x dw 0
+[  13]    0142: 00 00                                 y dw 0
+[  14]        :                                       .code
+[  15]    0150:                                       main proc
+[  16]    0150: B8 10 00                              mov ax,@data
+[  17]    0153: 8E D8                                 mov ds,ax
+[  18]    0155: 8E C0                                 mov es,ax
+[  19]        :                                       
+[  20]    0157: 33 C9                                 xor cx,cx
+[  21]    0159: B1 09                                 mov cl,9 ;    Number of element
+[  22]    015B: BE 00 00                              lea si,chuoi
+[  23]        :                                       
+[  24]        :                                       
+[  25]    015E:                                       solve:
+[  26]    015E: 80 3C 00                              cmp [si],0
+[  27]    0161: 7C 0B                                 jl soam
+[  28]    0163: 7F 02                                 jg soduong
+[  29]    0165: 74 0E                                 jz so0
+[  30]    0167:                                       soduong:
+[  31]    0167: 83 06 40 00 01                        add x,1
+[  32]    016C: EB 07                                 jmp so0
+[  33]    016E:                                       soam:
+[  34]    016E: 83 06 42 00 01                        add y,1
+[  35]    0173: EB 00                                 jmp so0
+[  36]    0175:                                       so0:
+[  37]    0175: 46                                    inc si
+[  38]    0176: E2 E6                                 loop solve
+[  39]        :                                       ;in so luong so duong
+[  40]        :                                       
+[  41]        :                                       
+[  42]    0178: B4 09 BA 09 00 CD 21                  inchuoi output1
+[  43]    017F: 33 C0                                 xor ax,ax
+[  44]    0181: A1 40 00                              mov ax,x
+[  45]    0184: E8 13 00                              call show
+[  46]        :                                       
+[  47]        :                                       
+[  48]        :                                       ;in so luong so am
+[  49]    0187: B4 09 BA 26 00 CD 21                  inchuoi output2
+[  50]    018E: 33 C0                                 xor ax,ax
+[  51]    0190: A1 42 00                              mov ax,y
+[  52]    0193: E8 04 00                              call show
+[  53]        :                                       
+[  54]    0196:                                       thoat:
+[  55]    0196: B4 4C                                 mov ah,4ch
+[  56]    0198: CD 21                                 int 21h
+[  57]        :                                       main endp
+[  58]        :                                       
+[  59]    019A:                                       show proc
+[  60]    019A: BB 0A 00                              mov bx,10
+[  61]    019D: 33 C9                                 xor cx,cx
+[  62]    019F:                                       _loop:
+[  63]    019F: 33 D2                                 xor dx,dx
+[  64]    01A1: F7 F3                                 div bx
+[  65]    01A3: 52                                    push dx
+[  66]    01A4: 41                                    inc cx
+[  67]    01A5: 3D 00 00                              cmp ax,0
+[  68]    01A8: 74 02                                 jz hienthi
+[  69]    01AA: EB F3                                 jmp _loop
+[  70]    01AC:                                       hienthi:
+[  71]    01AC: 5A                                    pop dx
+[  72]    01AD: 83 C2 30                              add dx,30h
+[  73]    01B0: B4 02                                 mov ah,2
+[  74]    01B2: CD 21                                 int 21h
+[  75]    01B4: E2 F6                                 loop hienthi
+[  76]    01B6: C3                                    ret
+[  77]        :                                       show endp
+[  78]        :                                       
+[  79]        :                                       
+[  80]        :                                       end main
+[  81]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: B7      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: A8      -   check sum (l.byte)
+0013: 40      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 15      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 15      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

@@ -1,0 +1,17 @@
+.data
+value DB ?
+.code
+start:  MOV AX, @data
+MOV DS, AX
+
+MOV DX, OFFSET value   ;Copies notice address to DX for display
+MOV AH, 3FH
+INT 21h                    ;Calls MS-DOS to input string
+
+MOV AH, 4ch       ;Returns control to MS-DOS
+INT 21h
+END start                            ;End of program.
+
+
+
+; [SOURCE]: E:\Desktop\8086\phana.asm

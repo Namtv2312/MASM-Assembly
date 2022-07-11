@@ -1,0 +1,14 @@
+mov ax, 15h
+mov dh, 250
+mul dh
+mov ax,3
+int 10h
+mov dx,5
+lea cx, ax
+mov ax,4
+mov bx,1
+int 21h
+
+
+
+; [SOURCE]: E:\Desktop\8086\phana.asm

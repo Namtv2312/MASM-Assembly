@@ -1,0 +1,182 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+msv2Name_Dec_to_Hex_Bin.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 11/07/2022  --  07:37:33 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       inchuoi macro chuoi
+[   3]        :                                       mov ah,9
+[   4]        :                                       lea dx,chuoi
+[   5]        :                                       int 21h
+[   6]        :                                       endm
+[   7]        :                                       .stack 100h
+[   8]        :                                       .data
+[   9]    0100: 4E 68 61 70 20 6D 61 20 53 56 3A 20   msg1 db "Nhap ma SV: $"
+                24                                  
+[  10]    010D: 0A 0D 4E 61 6D 65 3A 20 54 72 61 6E   msg2 db 10,13,"Name: Tran Van Nam$"
+                20 56 61 6E 20 4E 61 6D 24          
+[  11]    0122: 0A 0D 54 68 6F 6E 67 20 74 69 6E 20   msg3 db 10,13,"Thong tin sai!!!Nhap lai$"
+                73 61 69 21 21 21 4E 68 61 70 20 6C 
+                61 69 24                            
+[  12]    013D: 0A 0D 24                              xdong db 10,13,"$"
+[  13]    0140: 61 74 31 36 30 36 33 32               msv1 db "at160632"
+[  14]    0148: 41 54 31 36 30 36 33 32               msv2 db "AT160632"
+[  15]    0150: 1E 00 24 24 24 24 24 24 24 24 24 24   str 30,?,30 dup("$")  ,"nam4lpha"
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 6E 61 6D 34 
+                6C 70 68 61                         
+[  16]    0178: 0A 0D 4E 68 61 70 20 31 20 73 6F 20   msg4 db 10,13,"Nhap 1 so (he thap phan) : $"
+                28 68 65 20 74 68 61 70 20 70 68 61 
+                6E 29 3A 20 24                      
+[  17]    0195: 0A 0D 43 6F 20 73 6F 20 31 36 3A 20   msg5 db 10,13,"Co so 16: $"
+                24                                  
+[  18]    01A2: 0A 0D 48 65 20 6E 68 69 20 70 68 61   msg6 db 10,13,"He nhi phan (16bit): $"
+                6E 20 28 31 36 62 69 74 29 3A 20 24 
+                                                    
+[  19]    01BA: 00 00                                 x dw 0
+[  20]    01BC: 00 00                                 y dw 0
+[  21]        :                                       .code
+[  22]    01C0:                                       main proc
+[  23]    01C0: B8 10 00                              mov ax,@data
+[  24]    01C3: 8E D8                                 mov ds,ax
+[  25]    01C5: 8E C0                                 mov es,ax
+[  26]        :                                       ;nhap msv
+[  27]    01C7:                                       nhapmsv:
+[  28]    01C7: B4 09 BA 00 00 CD 21                  inchuoi msg1
+[  29]        :                                       ;nhap chuoi
+[  30]    01CE: B4 0A                                 mov ah,0Ah
+[  31]    01D0: BA 50 00                              lea dx,str
+[  32]    01D3: CD 21                                 int 21h
+[  33]    01D5: 33 C9                                 xor cx,cx
+[  34]        :                                       
+[  35]    01D7:                                       kiemtra:
+[  36]    01D7: B1 08                                 mov cl,8
+[  37]    01D9: 8A 1E 51 00                           mov bl, [str+1]
+[  38]    01DD: 3A CB                                 cmp cl, bl
+[  39]    01DF: 75 14                                 jnz nhaplai
+[  40]    01E1: BE 52 00                              lea si,str+2
+[  41]    01E4: BF 40 00                              lea di,msv1
+[  42]    01E7: F3 A6                                 repe cmpsb
+[  43]    01E9: 74 1A                                 je intb1
+[  44]    01EB: BE 52 00                              lea si,str+2
+[  45]    01EE: BF 48 00                              lea di,msv2
+[  46]    01F1: F3 A6                                 repe cmpsb
+[  47]    01F3: 74 10                                 je intb1
+[  48]    01F5:                                       nhaplai:
+[  49]    01F5: B4 09 BA 22 00 CD 21                  inchuoi msg3
+[  50]    01FC: B4 09 BA 3D 00 CD 21                  inchuoi xdong
+[  51]    0203: EB C2                                 jmp nhapmsv
+[  52]    0205:                                       intb1:
+[  53]    0205: B4 09 BA 0D 00 CD 21                  inchuoi msg2
+[  54]        :                                       
+[  55]        :                                       
+[  56]        :                                       
+[  57]        :                                       ;nhap so
+[  58]    020C: B4 09 BA 78 00 CD 21                  inchuoi msg4
+[  59]    0213: BB 0A 00                              mov bx,10
+[  60]    0216:                                       nhap:
+[  61]    0216: B4 01                                 mov ah,1
+[  62]    0218: CD 21                                 int 21h
+[  63]    021A: 3C 0D                                 cmp al,13
+[  64]    021C: 74 15                                 je he_nhiphan
+[  65]    021E: 2C 30                                 sub al,30h
+[  66]    0220: 32 E4                                 xor ah,ah
+[  67]    0222: A3 BC 00                              mov y,ax
+[  68]    0225: A1 BA 00                              mov ax,x
+[  69]    0228: F7 E3                                 mul bx
+[  70]    022A: 03 06 BC 00                           add ax,y
+[  71]    022E: A3 BA 00                              mov x,ax
+[  72]    0231: EB E3                                 jmp nhap
+[  73]    0233:                                       he_nhiphan:
+[  74]    0233: B4 09 BA A2 00 CD 21                  inchuoi msg6
+[  75]    023A: 33 DB                                 xor bx,bx
+[  76]    023C: 8B 1E BA 00                           mov bx,x
+[  77]    0240: B9 10 00                              mov cx,16
+[  78]    0243:                                       hienthi_he2:
+[  79]    0243: B2 30                                 mov dl,30h
+[  80]    0245: D1 E3                                 shl bx,1 ;day bit cao nhat cua bx vao co CF
+[  81]    0247: 80 D2 00                              adc dl,0  ;dl = dl+0+CF
+[  82]    024A: B4 02                                 mov ah,2
+[  83]    024C: CD 21                                 int 21h
+[  84]    024E: E2 F3                                 loop hienthi_he2
+[  85]    0250:                                       hr_thapluc:
+[  86]    0250: B4 09 BA 95 00 CD 21                  inchuoi msg5
+[  87]    0257: A1 BA 00                              mov ax,x
+[  88]    025A: 33 C9                                 xor cx,cx
+[  89]    025C:                                       chuyen_he16:
+[  90]    025C: 33 D2                                 xor dx,dx
+[  91]    025E: B3 10                                 mov bl,16
+[  92]    0260: F7 F3                                 div bx
+[  93]    0262: 83 FA 09                              cmp dx,9
+[  94]    0265: 77 05                                 ja chucai
+[  95]    0267: 83 C2 30                              add dx,30h
+[  96]    026A: EB 03                                 jmp chuso
+[  97]    026C:                                       chucai:
+[  98]    026C: 83 C2 37                              add dx,37h ;dua ve chu
+[  99]    026F:                                       chuso:
+[ 100]    026F: 52                                    push dx
+[ 101]    0270: 41                                    inc cx
+[ 102]    0271: 3D 00 00                              cmp ax,0
+[ 103]    0274: 75 E6                                 jne chuyen_he16
+[ 104]    0276:                                       hienthi_he16:
+[ 105]    0276: 5A                                    pop dx
+[ 106]    0277: B4 02                                 mov ah,2
+[ 107]    0279: CD 21                                 int 21h
+[ 108]    027B: E2 F9                                 loop hienthi_he16
+[ 109]        :                                       
+[ 110]    027D:                                       thoat:
+[ 111]    027D: B4 4C                                 mov ah,4ch
+[ 112]    027F: CD 21                                 int 21h
+[ 113]        :                                       main endp
+[ 114]        :                                       end main
+[ 115]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 81      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 16      -   check sum (l.byte)
+0013: A0      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 1C      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 1C      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

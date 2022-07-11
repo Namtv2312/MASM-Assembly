@@ -1,0 +1,123 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+msv2Name_CounChiaHet.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 11/07/2022  --  11:08:34 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       inchuoi macro chuoi
+[   3]        :                                       mov ah,9
+[   4]        :                                       lea dx,chuoi
+[   5]        :                                       int 21h
+[   6]        :                                       endm
+[   7]        :                                       .stack 100h
+[   8]        :                                       .data
+[   9]        :                                       
+[  10]    0100: 0A 0D 24                              linefeed db 10,13,"$"
+[  11]    0103: 00 05 06 08 0A 9B BE 98 88            chuoi db 0,5,6,8,10,155,190,152  ,-120
+[  12]    010C: 0A 0D 53 6F 20 6C 75 6F 6E 67 20 73   output db 10,13,"So luong so chia het cho 5 la: $"
+                6F 20 63 68 69 61 20 68 65 74 20 63 
+                68 6F 20 35 20 6C 61 3A 20 24       
+[  13]    012E: 00 00                                 count dw 0
+[  14]        :                                       
+[  15]        :                                       .code
+[  16]        :                                       
+[  17]    0130:                                       main proc
+[  18]    0130: B8 10 00                              mov ax,@data
+[  19]    0133: 8E D8                                 mov ds,ax
+[  20]    0135: 8E C0                                 mov es,ax
+[  21]        :                                       
+[  22]        :                                       
+[  23]    0137: B4 09 BA 0C 00 CD 21                  inchuoi output
+[  24]    013E: 33 C9                                 xor cx,cx
+[  25]    0140: B1 09                                 mov cl,9  ;do dai chuoi so
+[  26]    0142: BE 03 00                              lea si,chuoi
+[  27]        :                                       
+[  28]    0145:                                       solve:
+[  29]    0145: 33 C0                                 xor ax,ax
+[  30]    0147: 8A 04                                 mov al,[si]
+[  31]    0149: 33 D2                                 xor dx,dx
+[  32]    014B: BB 05 00                              mov bx,5    ;chia het cho so nao thi nhap vao day
+[  33]    014E: F7 F3                                 div bx
+[  34]    0150: 83 FA 00                              cmp dx,0
+[  35]    0153: 75 05                                 jnz outt
+[  36]    0155: 83 06 2E 00 01                        add count,1
+[  37]    015A:                                       outt:
+[  38]    015A: 46                                    inc si
+[  39]    015B: E2 E8                                 loop solve
+[  40]        :                                       
+[  41]    015D: 33 C0                                 xor ax,ax
+[  42]    015F: 33 C9                                 xor cx,cx
+[  43]    0161: BB 0A 00                              mov bx,10
+[  44]    0164: A1 2E 00                              mov ax,count
+[  45]    0167:                                       lappush:
+[  46]    0167: 33 D2                                 xor dx,dx
+[  47]    0169: F7 F3                                 div bx
+[  48]    016B: 52                                    push dx
+[  49]    016C: 41                                    inc cx
+[  50]    016D: 3D 00 00                              cmp ax,0
+[  51]    0170: 74 02                                 jz hienthi
+[  52]    0172: EB F3                                 jmp lappush
+[  53]    0174:                                       hienthi:
+[  54]    0174: 5A                                    pop dx
+[  55]    0175: 83 C2 30                              add dx,30h
+[  56]    0178: B4 02                                 mov ah,2
+[  57]    017A: CD 21                                 int 21h
+[  58]    017C: E2 F6                                 loop hienthi
+[  59]        :                                       
+[  60]    017E:                                       thoat:
+[  61]    017E: B4 4C                                 mov ah,4ch
+[  62]    0180: CD 21                                 int 21h
+[  63]        :                                       main endp
+[  64]        :                                       
+[  65]        :                                       end main
+[  66]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 82      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 16      -   check sum (l.byte)
+0013: CE      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 13      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 13      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

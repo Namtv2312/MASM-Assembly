@@ -1,0 +1,138 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+BUOI4.bai4.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 31/05/2022  --  19:19:37 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       ;khong su dung 0Ah/21h nhap vao chuoi ky tu va dem so ky tu hien thi lai chuoi ky tu do
+[   2]        :                                       .model small
+[   3]        :                                       .stack 50
+[   4]        :                                       .data
+[   5]    0040: 00 00 00 00 00 00 00 00 00 00 00 00   mang DB 50 dup(?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00                               
+[   6]    0072: 00                                    kt Db ?
+[   7]    0073: 4E 68 61 70 20 63 68 75 6F 69 3A 20   tb1 db 'Nhap chuoi: $'
+                24                                  
+[   8]    0080: 0A 0D 53 6F 20 6B 69 20 74 75 3A 20   tb2 db 10, 13, 'So ki tu: $'
+                24                                  
+[   9]    008D: 0A 0D 43 68 75 6F 69 20 64 61 20 6E   tb3 db 10, 13, 'Chuoi da nhap vao: $'
+                68 61 70 20 76 61 6F 3A 20 24       
+[  10]    00A3: 0A                                    chia db 10
+[  11]        :                                       .code
+[  12]    00B0:                                       main proc
+[  13]    00B0: B8 04 00                              mov ax,@data
+[  14]    00B3: 8E D8                                 mov ds,ax
+[  15]    00B5: BA 33 00                              lea dx, tb1
+[  16]    00B8: B4 09                                 mov ah,9
+[  17]    00BA: CD 21                                 int 21h
+[  18]        :                                       
+[  19]        :                                       ;nhap mang
+[  20]    00BC: BE 00 00                              Lea Si,mang
+[  21]    00BF: 33 C9                                 xor cx,cx
+[  22]    00C1:                                       Lapnhap:
+[  23]    00C1: B4 01                                 mov ah,1
+[  24]    00C3: CD 21                                 int 21h
+[  25]    00C5: 3C 0D                                 cmp al,0Dh
+[  26]    00C7: 74 06                                 je Xuong
+[  27]    00C9: 88 04                                 mov [si], al
+[  28]    00CB: 46                                    inc si
+[  29]    00CC: 41                                    inc cx
+[  30]    00CD: EB F2                                 jmp Lapnhap
+[  31]        :                                       ;xuong dong
+[  32]    00CF:                                       Xuong:
+[  33]    00CF: BA 40 00                              lea dx, tb2
+[  34]    00D2: B4 09                                 mov ah,09h
+[  35]    00D4: CD 21                                 int 21h
+[  36]        :                                       ;hien thi so ky tu
+[  37]    00D6: 88 0E 32 00                           mov kt,cl
+[  38]    00DA: 8A C1                                 mov al,cl
+[  39]    00DC: B4 00                                 mov ah,0
+[  40]    00DE: 33 C9                                 xor cx,cx
+[  41]    00E0:                                       Lap:
+[  42]    00E0: 33 D2                                 xor dx,dx
+[  43]    00E2: F6 36 63 00                           div chia
+[  44]        :                                       
+[  45]    00E6: 80 C4 30                              add ah,30h
+[  46]    00E9: 8A D4                                 mov dl,ah
+[  47]    00EB: 52                                    push dx
+[  48]    00EC: 41                                    inc cx
+[  49]    00ED: 32 E4                                 xor ah,ah
+[  50]    00EF: 3D 00 00                              cmp ax,0
+[  51]    00F2: 75 EC                                 jne Lap
+[  52]    00F4:                                       Hienthi:
+[  53]    00F4: 5A                                    pop dx
+[  54]    00F5: B4 02                                 mov ah,2
+[  55]    00F7: CD 21                                 int 21h
+[  56]    00F9: E2 F9                                 loop Hienthi:
+[  57]        :                                       
+[  58]    00FB: BA 4D 00                              lea dx,tb3
+[  59]    00FE: B4 09                                 mov ah,09h
+[  60]    0100: CD 21                                 int 21h
+[  61]        :                                       ;hien thi da nhap vao
+[  62]    0102: 8A 0E 32 00                           mov cl,kt
+[  63]    0106: BE 00 00                              lea si,mang
+[  64]    0109:                                       XUat:
+[  65]    0109: 8A 14                                 mov dl,[si]
+[  66]    010B: B4 02                                 mov ah,2
+[  67]    010D: CD 21                                 int 21h
+[  68]    010F: 46                                    inc si
+[  69]    0110: E2 F7                                 loop xuat
+[  70]        :                                       
+[  71]    0112: B4 4C                                 mov ah,4Ch
+[  72]    0114: CD 21                                 int 21h
+[  73]        :                                       
+[  74]        :                                       main endp
+[  75]        :                                       end main
+[  76]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 16      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 32      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: B5      -   check sum (l.byte)
+0013: F8      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 0B      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 0B      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

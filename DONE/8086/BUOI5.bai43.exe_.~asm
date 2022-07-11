@@ -1,0 +1,51 @@
+inchuoi MACRO chuoi
+MOV AH, 9h
+LEA DX, chuoi
+INT 21h
+ENDM
+DSEG SEGMENT
+msg1 DB "Hay nhap 1 ky tu: $"
+msg2 DB "Ma ASCII o dang Dec: $"
+xdong DB 10, 13, ‘$’
+kytu DB ?
+DSEG ENDS
+CSEG SEGMENT
+ASSUME CS:CSEG, DS:DSEG
+begin: MOV AX, DSEG
+MOV DS, AX
+inchuoi msg1
+MOV AH, 01h
+INT 21h
+MOV kytu, AL ; c?t ký t? nh?n du?c
+inchuoi xdong
+inchuoi msg2
+XOR AX, AX
+MOV AL, kytu ; Ký t? c?n in
+
+CALL dec_out
+MOV AH, 01
+INT 21h
+MOV AH, 4Ch ; thoat kh?i chuong trình
+INT 21h
+dec_out PROC
+XOR CX,CX ; CX d?m s? ch? s? th?p phân
+MOV BX,10
+chia10: XOR DX,DX
+DIV BX ; DX:AX÷BX => AX: Thuong, DX: s? du
+PUSH DX ; C?t s? du vào stack
+INC CX
+CMP AX, 0
+JNZ chia10 ; n?u AX>0 thì chia ti?p cho 10
+inra: MOV AH,2 ; in ra màn hình
+POP DX ; l?y ch? s? th?p phân
+ADD DL,30h ; d?i thành ký s?
+INT 21h
+LOOP inra
+RET
+dec_out ENDP
+CSEG ENDS
+END begin
+
+
+
+; [SOURCE]: G:\Program File\emu8086\MySource\BUOI5.bai43.asm

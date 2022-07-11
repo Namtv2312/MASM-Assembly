@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  msv2Name_CounAmDUong.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+CHUOI                    	00000     	1         	VAR       	data      
+OUTPUT1                  	00009     	1         	VAR       	data      
+OUTPUT2                  	00026     	1         	VAR       	data      
+X                        	00040     	2         	VAR       	data      
+Y                        	00042     	2         	VAR       	data      
+CODE                     	00015     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+SOLVE                    	0000E     	-1        	LABEL     	code      
+SODUONG                  	00017     	-1        	LABEL     	code      
+SOAM                     	0001E     	-1        	LABEL     	code      
+SO0                      	00025     	-1        	LABEL     	code      
+THOAT                    	00046     	-1        	LABEL     	code      
+SHOW                     	0004A     	-1        	NEAR      	code      
+_LOOP                    	0004F     	-1        	LABEL     	code      
+HIENTHI                  	0005C     	-1        	LABEL     	code      
+===================================================================================================
+[ 11/07/2022  --  10:42:54 ] 
+< END >
+ 

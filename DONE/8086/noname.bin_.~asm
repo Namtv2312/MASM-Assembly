@@ -1,0 +1,23 @@
+writeln macro bien1
+LOCAL bien1
+mov ah,09
+lea dx, bien1
+int 21h
+mov ah,02h
+mov dl, 0ah
+int 21h
+mov dl, 0dh
+int 21h
+endm
+dseg segment
+
+
+tbao db "Chuong tring so sanh oldpass va newpass$"
+oldpass db "0123456789"
+newpass db "1234567890"
+tbao1 db "Haichuoi giong nhau $"
+tbao2 db "Haichuoi khong giong nhau $"
+dseg ends
+cseg segment
+assume cs:cseg, ds:dseg, es: dseg
+

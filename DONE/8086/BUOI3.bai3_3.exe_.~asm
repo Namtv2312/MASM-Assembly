@@ -1,0 +1,24 @@
+CSEG SEGMENT
+ASSUME CS: CSEG
+start:
+mov ah, 08h
+int 21h
+mov bl, al ; DL ch?a ký t? d?u tiên 'A'
+nhan: mov ah, 02h
+mov dl, bl ;
+int 21h
+mov dl, ' '
+int 21h
+inc bl ; DL ch?a ký t? k? c?n in
+cmp bl, 'z' ; So sánh DL v?i 'Z'
+jbe nhan ; N?u <= 'Z' thì ti?p t?c in
+mov ah, 08h ; N?u > 'Z' thì thoát (không in ti?p)
+int 21h
+mov ah, 4Ch
+int 21h
+CSEG ENDS
+END start
+
+
+
+; [SOURCE]: G:\Program File\emu8086\MySource\BUOI3.bai3_3.asm

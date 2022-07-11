@@ -1,0 +1,114 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+BUOI5.bai_2a.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 06/06/2022  --  18:36:39 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       inchuoi MACRO chuoi
+[   2]        :                                       MOV AH, 9h
+[   3]        :                                       LEA DX, chuoi
+[   4]        :                                       INT 21h
+[   5]        :                                       ENDM
+[   6]        :                                       DSEG SEGMENT
+[   7]    0000: 48 61 79 20 6E 68 61 70 20 73 6F 20   msg1 DB "Hay nhap so nhi phan 8 bit: $"
+                6E 68 69 20 70 68 61 6E 20 38 20 62 
+                69 74 3A 20 24                      
+[   8]    001D: 53 6F 20 6E 68 69 20 70 68 61 6E 20   msg2 DB "So nhi phan da nhap la: $"
+                64 61 20 6E 68 61 70 20 6C 61 3A 20 
+                24                                  
+[   9]    0036: 0A 0D 24                              xdong DB 10, 13, ‘$’
+[  10]    0039: 00                                    sobin DB ? ; luu tr? s? nh? phân nh?n du?c
+[  11]        :                                       DSEG ENDS
+[  12]        :                                       CSEG SEGMENT
+[  13]        :                                       ASSUME CS:CSEG, DS:DSEG
+[  14]    0040: B8 00 00                              begin: MOV AX, DSEG
+[  15]    0043: 8E D8                                 MOV DS, AX
+[  16]    0045: B4 09 BA 00 00 CD 21                  inchuoi msg1
+[  17]    004C: E8 21 00                              CALL bin_in
+[  18]    004F: 88 1E 39 00                           MOV sobin, BL
+[  19]    0053: B4 09 BA 36 00 CD 21                  inchuoi xdong
+[  20]    005A: B4 09 BA 1D 00 CD 21                  inchuoi msg2
+[  21]    0061: 8A 1E 39 00                           MOV BL, sobin
+[  22]    0065: E8 1E 00                              CALL bin_out
+[  23]    0068: B4 01                                 MOV AH, 01
+[  24]    006A: CD 21                                 INT 21h
+[  25]    006C: B4 4C                                 MOV AH, 4Ch ; thoat kh?i chuong trình
+[  26]    006E: CD 21                                 INT 21h
+[  27]        :                                       
+[  28]    0070:                                       bin_in PROC
+[  29]    0070: B3 00                                 MOV BL, 0 ; Xóa BL
+[  30]    0072: B9 08 00                              MOV CX, 8 ; nh?p d? 8 bit thì d?ng
+[  31]    0075: B4 01                                 nhap:MOV AH, 01h ; Hàm nh?p ký t?
+[  32]    0077: CD 21                                 INT 21h
+[  33]    0079: 3C 0D                                 CMP AL, 0Dh ; n?u là phím Enter thì thôi nh?p
+[  34]    007B: 74 08                                 JZ exit ; không ph?i Enter thì d?i sang bit
+[  35]    007D: D0 E3                                 SHL BL, 1 ; D?ch trái BL 1 bit
+[  36]    007F: 2C 30                                 SUB AL, 30h ; Ký s? - 30h = s?
+[  37]    0081: 02 D8                                 ADD BL, AL ; Chuy?n bit t? AL sang BL luu tr?
+[  38]    0083: E2 F0                                 LOOP nhap
+[  39]    0085: C3                                    exit:RET
+[  40]        :                                       bin_in ENDP
+[  41]        :                                       
+[  42]    0086:                                       bin_out PROC
+[  43]    0086: B9 08 00                              MOV CX, 8 ; Xu?t 8 bit trong BL ra M.Hình
+[  44]    0089: B2 00                                 xuat:MOV DL, 0
+[  45]    008B: D0 E3                                 SHL BL, 1 ; CF ch?a MSB, xu?t ra màn hình
+[  46]    008D: D0 D2                                 RCL DL, 1 ; dua CF vào LSB c?a DL
+[  47]    008F: 80 C2 30                              ADD DL, 30h ; S? + 30h = Ký s?
+[  48]    0092: B4 02                                 MOV AH, 02h ; In ra màn hình
+[  49]    0094: CD 21                                 INT 21h
+[  50]    0096: E2 F1                                 LOOP xuat
+[  51]    0098: C3                                    RET
+[  52]        :                                       bin_out ENDP
+[  53]        :                                       CSEG ENDS
+[  54]        :                                       END begin
+[  55]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 99      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: B2      -   check sum (l.byte)
+0013: 56      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 04      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 04      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

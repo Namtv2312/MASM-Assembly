@@ -1,0 +1,22 @@
+CSEG SEGMENT
+ASSUME CS: CSEG
+start:
+mov bl, 'Z' ; DL ch?a ký t? d?u tiên 'A'
+mov cx,26
+nhan:
+mov ah, 02h
+mov dl, bl ;
+int 21h
+mov dl, ' '
+int 21h
+dec bl ; DL ch?a ký t? k? c?n in
+loop nhan
+mov ah, 4ch
+int 21h
+CSEG ENDS
+END start
+
+
+
+
+; [SOURCE]: G:\Program File\emu8086\MySource\BUOI4.loop

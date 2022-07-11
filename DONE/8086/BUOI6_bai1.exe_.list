@@ -1,0 +1,78 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+BUOI6_bai1.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 07/06/2022  --  18:25:21 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       DSEG SEGMENT
+[   2]    0000: 64 61 74 61 2E 74 78 74 00            tenfile db "data.txt",0
+[   3]    0009: 00 00                                 thefile dw ?
+[   4]        :                                       DSEG ENDS
+[   5]        :                                       CSEG SEGMENT
+[   6]        :                                       ASSUME cs:cseg, ds:dseg
+[   7]    0010: B8 00 00                              begin: mov ax, dseg
+[   8]    0013: 8E D8                                 mov ds, ax
+[   9]    0015: B4 3C                                 mov ah, 3ch ; tao tap tin moi
+[  10]    0017: BA 00 00                              lea dx, tenfile
+[  11]        :                                       
+[  12]    001A: B9 00 00                              mov cx, 0 ; thuoc tinh tap tin
+[  13]    001D: CD 21                                 int 21h
+[  14]    001F: A3 09 00                              mov thefile, ax ; cat the file
+[  15]    0022: B4 3E                                 mov ah, 3eh ; dong tap tin
+[  16]    0024: 8B 1E 09 00                           mov bx, thefile
+[  17]    0028: CD 21                                 int 21h
+[  18]    002A: B4 4C                                 mov ah, 4ch ; thoat ve Dos
+[  19]    002C: CD 21                                 int 21h
+[  20]        :                                       CSEG ENDS
+[  21]        :                                       END begin
+[  22]        :                                       
+[  23]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 2E      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: 7D      -   check sum (l.byte)
+0013: 9D      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 01      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 01      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

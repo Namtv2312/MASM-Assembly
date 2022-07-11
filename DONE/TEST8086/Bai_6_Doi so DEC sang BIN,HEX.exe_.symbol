@@ -1,0 +1,37 @@
+< THE SYMBOL TABLE >  Bai_6_Doi so DEC sang BIN,HEX.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+MSG1                     	00000     	1         	VAR       	data      
+MSG2                     	0000B     	1         	VAR       	data      
+MSG3                     	00031     	1         	VAR       	data      
+XDONG                    	00044     	1         	VAR       	data      
+MSV1                     	00047     	1         	VAR       	data      
+MSV2                     	0004F     	1         	VAR       	data      
+STR                      	00057     	1         	VAR       	data      
+MSG4                     	000BD     	1         	VAR       	data      
+MSG5                     	000D8     	1         	VAR       	data      
+MSG6                     	000EF     	1         	VAR       	data      
+X                        	00110     	2         	VAR       	data      
+Y                        	00112     	2         	VAR       	data      
+CODE                     	00022     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+NHAPMSV                  	00007     	-1        	LABEL     	code      
+KIEMTRA                  	00022     	-1        	LABEL     	code      
+NHAPLAI                  	0003B     	-1        	LABEL     	code      
+INTB1                    	0004B     	-1        	LABEL     	code      
+NHAP                     	0005C     	-1        	LABEL     	code      
+HE_NHIPHAN               	00079     	-1        	LABEL     	code      
+HIENTHI_HE2              	00089     	-1        	LABEL     	code      
+HR_THAPLUC               	00096     	-1        	LABEL     	code      
+CHUYEN_HE16              	000A2     	-1        	LABEL     	code      
+CHUCAI                   	000B2     	-1        	LABEL     	code      
+CHUSO                    	000B5     	-1        	LABEL     	code      
+HIENTHI_HE16             	000BC     	-1        	LABEL     	code      
+THOAT                    	000C3     	-1        	LABEL     	code      
+===================================================================================================
+[ 10/07/2022  --  20:57:03 ] 
+< END >
+ 

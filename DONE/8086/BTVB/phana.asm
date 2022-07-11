@@ -1,0 +1,11 @@
+     
+ORG 100h
+.MODEL SMALL 
+.DATA
+NUM_1 DW 15h
+NUM_2 DB 250
+.CODE   
+MOV BH, 15h      
+MOV AX, 250    
+MUL BH          
+RET

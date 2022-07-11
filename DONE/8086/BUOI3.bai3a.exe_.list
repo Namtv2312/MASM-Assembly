@@ -1,0 +1,90 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+BUOI3.bai3a.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 30/05/2022  --  19:07:28 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       DSEG SEGMENT
+[   2]    0000: 4B 79 20 74 75 20 48 4F 41 2E 24      tbao1 DB "Ky tu HOA.$"
+[   3]    000B: 4B 79 20 74 75 20 74 68 75 6F 6E 67   tbao2 DB "Ky tu thuong.$"
+                2E 24                               
+[   4]        :                                       DSEG ENDS
+[   5]        :                                       CSEG SEGMENT
+[   6]        :                                       ASSUME CS: CSEG, DS: DSEG
+[   7]    0020:                                       start:
+[   8]    0020: B8 00 00                              mov ax, DSEG
+[   9]    0023: 8E D8                                 mov ds, ax
+[  10]        :                                       
+[  11]    0025: B4 01                                 mov ah, 01h
+[  12]    0027: CD 21                                 int 21h
+[  13]        :                                       
+[  14]    0029: 3C 5A                                 cmp al,'Z'
+[  15]    002B: 77 02                                 ja nhan
+[  16]    002D: EB 0B                                 jmp exit
+[  17]        :                                       
+[  18]    002F:                                       nhan:
+[  19]    002F: B4 09                                 mov ah, 09 ; in "Ky tu thuong"
+[  20]    0031: BA 0B 00                              lea dx, tbao2
+[  21]    0034: CD 21                                 int 21h
+[  22]    0036: B4 4C                                 mov ah,4ch
+[  23]    0038: CD 21                                 int 21h
+[  24]        :                                       
+[  25]    003A:                                       exit:
+[  26]    003A: B4 09                                 mov ah, 9
+[  27]    003C: BA 00 00                              lea dx, tbao1
+[  28]    003F: CD 21                                 int 21h
+[  29]    0041: B4 4C                                 mov ah, 4Ch ; tr? v? h? di?u hành
+[  30]    0043: CD 21                                 int 21h
+[  31]        :                                       CSEG ENDS
+[  32]        :                                       END start
+[  33]        :                                       
+[  34]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 45      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: B4      -   check sum (l.byte)
+0013: AB      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 02      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 02      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

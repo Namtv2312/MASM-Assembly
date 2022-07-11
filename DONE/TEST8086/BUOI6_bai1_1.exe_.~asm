@@ -1,0 +1,36 @@
+DSEG segment
+tenfile db 100 dup (?),0
+thefile dw ?
+DSEG ends
+cseg segment
+assume cs:cseg, ds:dseg
+begin :
+mov ax, dseg
+mov ds, ax
+mov ah,1
+lea si, tenfile
+
+nhap:
+int 21h
+cmp al, 0dh
+jz abc
+mov [si], al
+inc si
+jmp nhap
+abc:
+mov ah, 3ch
+lea dx, tenfile
+mov cx, 0
+int 21h
+mov thefile, ax
+mov ah, 3eh
+mov bx, thefile
+int 21h
+mov ah,4ch
+int 21h
+cseg ends
+end begin
+
+
+
+; [SOURCE]: G:\Program File\emu8086\MySource\LEARN\BUOI6_bai1_1.asm

@@ -1,0 +1,10 @@
+ORG 100h
+.MODEL SMALL 
+.DATA
+NUM_1 DW 400
+NUM_2 DW 300
+.CODE   
+MOV BX, NUM_2     
+MOV AX, NUM_1    
+MUL BX            
+RET

@@ -1,0 +1,19 @@
+< THE SYMBOL TABLE >  BUOI5.bai_cr_bin.com_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+S_DCL_LOC1TMP            	00104     	1         	VAR       	(NOSEG)   
+SKIP_DCL_LOC1TMP         	00110     	-1        	LABEL     	(NOSEG)   
+NEXT_CHAR_LOC1TMP        	00113     	-1        	LABEL     	(NOSEG)   
+PRINTED_LOC1TMP          	00121     	-1        	LABEL     	(NOSEG)   
+S_DCL_LOC2TMP            	0013D     	1         	VAR       	(NOSEG)   
+SKIP_DCL_LOC2TMP         	00147     	-1        	LABEL     	(NOSEG)   
+NEXT_CHAR_LOC2TMP        	0014A     	-1        	LABEL     	(NOSEG)   
+PRINTED_LOC2TMP          	00158     	-1        	LABEL     	(NOSEG)   
+L1                       	00161     	-1        	LABEL     	(NOSEG)   
+L2                       	0017B     	-1        	LABEL     	(NOSEG)   
+L3                       	00181     	-1        	LABEL     	(NOSEG)   
+===================================================================================================
+[ 06/06/2022  --  19:47:22 ] 
+< END >
+ 

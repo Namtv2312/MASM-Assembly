@@ -1,0 +1,37 @@
+< THE SYMBOL TABLE >  msv2Name_Dec_to_Hex_Bin.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+MSG1                     	00000     	1         	VAR       	data      
+MSG2                     	0000D     	1         	VAR       	data      
+MSG3                     	00022     	1         	VAR       	data      
+XDONG                    	0003D     	1         	VAR       	data      
+MSV1                     	00040     	1         	VAR       	data      
+MSV2                     	00048     	1         	VAR       	data      
+STR                      	00050     	1         	VAR       	data      
+MSG4                     	00078     	1         	VAR       	data      
+MSG5                     	00095     	1         	VAR       	data      
+MSG6                     	000A2     	1         	VAR       	data      
+X                        	000BA     	2         	VAR       	data      
+Y                        	000BC     	2         	VAR       	data      
+CODE                     	0001C     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+NHAPMSV                  	00007     	-1        	LABEL     	code      
+KIEMTRA                  	00017     	-1        	LABEL     	code      
+NHAPLAI                  	00035     	-1        	LABEL     	code      
+INTB1                    	00045     	-1        	LABEL     	code      
+NHAP                     	00056     	-1        	LABEL     	code      
+HE_NHIPHAN               	00073     	-1        	LABEL     	code      
+HIENTHI_HE2              	00083     	-1        	LABEL     	code      
+HR_THAPLUC               	00090     	-1        	LABEL     	code      
+CHUYEN_HE16              	0009C     	-1        	LABEL     	code      
+CHUCAI                   	000AC     	-1        	LABEL     	code      
+CHUSO                    	000AF     	-1        	LABEL     	code      
+HIENTHI_HE16             	000B6     	-1        	LABEL     	code      
+THOAT                    	000BD     	-1        	LABEL     	code      
+===================================================================================================
+[ 11/07/2022  --  07:37:33 ] 
+< END >
+ 

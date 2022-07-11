@@ -1,0 +1,34 @@
+< THE SYMBOL TABLE >  msv2Name_CountSNT.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+MSG1                     	00000     	1         	VAR       	data      
+MSG2                     	0000D     	1         	VAR       	data      
+MSG3                     	00022     	1         	VAR       	data      
+MSV1                     	0003D     	1         	VAR       	data      
+MSV2                     	00045     	1         	VAR       	data      
+STR                      	0004D     	1         	VAR       	data      
+XDONG                    	00075     	1         	VAR       	data      
+MSG4                     	00078     	1         	VAR       	data      
+CHUOI                    	00098     	1         	VAR       	data      
+DEM                      	000A2     	2         	VAR       	data      
+CODE                     	0001B     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+NHAPMSV                  	00007     	-1        	LABEL     	code      
+KIEMTRA                  	00017     	-1        	LABEL     	code      
+NHAPLAI                  	00035     	-1        	LABEL     	code      
+INTB1                    	00045     	-1        	LABEL     	code      
+DEM_SNT                  	0004C     	-1        	LABEL     	code      
+LAP                      	00059     	-1        	LABEL     	code      
+LAP2                     	00066     	-1        	LABEL     	code      
+SNT                      	00078     	-1        	LABEL     	code      
+KHONGPHAISNT             	0007D     	-1        	LABEL     	code      
+_PUSH                    	00088     	-1        	LABEL     	code      
+HIENTHI                  	00095     	-1        	LABEL     	code      
+THOAT                    	0009F     	-1        	LABEL     	code      
+===================================================================================================
+[ 10/07/2022  --  23:50:40 ] 
+< END >
+ 

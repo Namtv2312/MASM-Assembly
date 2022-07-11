@@ -1,0 +1,18 @@
+< THE SYMBOL TABLE >  noname.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DSEG                     	00000     	-5        	SEGMENT   	(ITSELF)  
+TBAO                     	00000     	1         	VAR       	dseg      
+OLDPASS                  	00028     	1         	VAR       	dseg      
+NEWPASS                  	00032     	1         	VAR       	dseg      
+TBAO1                    	0003C     	1         	VAR       	dseg      
+TBAO2                    	00051     	1         	VAR       	dseg      
+CSEG                     	00007     	-5        	SEGMENT   	(ITSELF)  
+BEGIN                    	00000     	-1        	LABEL     	cseg      
+INTB1                    	00039     	-1        	LABEL     	cseg      
+THOAT                    	0004A     	-1        	LABEL     	cseg      
+===================================================================================================
+[ 23/06/2022  --  21:37:32 ] 
+< END >
+ 

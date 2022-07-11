@@ -1,0 +1,21 @@
+< THE SYMBOL TABLE >  msv2Name_CounChiaHet.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+LINEFEED                 	00000     	1         	VAR       	data      
+CHUOI                    	00003     	1         	VAR       	data      
+OUTPUT                   	0000C     	1         	VAR       	data      
+COUNT                    	0002E     	2         	VAR       	data      
+CODE                     	00013     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+SOLVE                    	00015     	-1        	LABEL     	code      
+OUTT                     	0002A     	-1        	LABEL     	code      
+LAPPUSH                  	00037     	-1        	LABEL     	code      
+HIENTHI                  	00044     	-1        	LABEL     	code      
+THOAT                    	0004E     	-1        	LABEL     	code      
+===================================================================================================
+[ 11/07/2022  --  11:08:34 ] 
+< END >
+ 

@@ -1,0 +1,172 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+msv2Name_CounChar.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 10/07/2022  --  23:48:20 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       inchuoi macro chuoi
+[   3]        :                                       mov ah,9
+[   4]        :                                       lea dx,chuoi
+[   5]        :                                       int 21h
+[   6]        :                                       endm
+[   7]        :                                       .stack 100h
+[   8]        :                                       .data
+[   9]    0100: 4E 68 61 70 20 6D 61 20 53 56 3A 20   msg1 db "Nhap ma SV: $"
+                24                                  
+[  10]    010D: 0A 0D 4E 61 6D 65 3A 20 54 72 61 6E   msg2 db 10,13,"Name: Tran Van Nam$"
+                20 56 61 6E 20 4E 61 6D 24          
+[  11]    0122: 0A 0D 54 68 6F 6E 67 20 74 69 6E 20   msg3 db 10,13,"Thong tin sai!!!Nhap lai$"
+                73 61 69 21 21 21 4E 68 61 70 20 6C 
+                61 69 24                            
+[  12]    013D: 0A 0D 24                              xdong db 10,13,"$"
+[  13]    0140: 61 74 31 36 30 36 33 32               msv1 db "at160632"
+[  14]    0148: 41 54 31 36 30 36 33 32               msv2 db "AT160632"
+[  15]    0150: 1E 00 24 24 24 24 24 24 24 24 24 24   str 30,?,30 dup("$")  ,"nam4lpha"
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 6E 61 6D 34 
+                6C 70 68 61                         
+[  16]    0178: 0A 0D 4E 68 61 70 20 63 68 75 6F 69   msg4 db 10,13,"Nhap chuoi: $"
+                3A 20 24                            
+[  17]    0187: 0A 0D 53 6F 20 6B 79 20 74 75 20 74   msg5 db 10,13,"So ky tu trong chuoi: $"
+                72 6F 6E 67 20 63 68 75 6F 69 3A 20 
+                24                                  
+[  18]    01A0: 64 00 24 24 24 24 24 24 24 24 24 24   str2 db 100,?,100 dup ("$")
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24                   
+[  19]    0206: 00                                    count db 0
+[  20]        :                                       .code
+[  21]    0210:                                       main proc
+[  22]    0210: B8 10 00                              mov ax,@data
+[  23]    0213: 8E D8                                 mov ds,ax
+[  24]    0215: 8E C0                                 mov es,ax
+[  25]        :                                       ;nhap msv
+[  26]    0217:                                       nhapmsv:
+[  27]    0217: B4 09 BA 00 00 CD 21                  inchuoi msg1
+[  28]        :                                       ;nhap chuoi
+[  29]    021E: B4 0A                                 mov ah,0Ah
+[  30]    0220: BA 50 00                              lea dx,str
+[  31]    0223: CD 21                                 int 21h
+[  32]    0225: 33 C9                                 xor cx,cx
+[  33]        :                                       
+[  34]    0227:                                       kiemtra:
+[  35]    0227: B1 08                                 mov cl,8
+[  36]    0229: 8A 1E 51 00                           mov bl, [str+1]
+[  37]    022D: 3A CB                                 cmp cl, bl
+[  38]    022F: 75 14                                 jnz nhaplai
+[  39]    0231: BE 52 00                              lea si,str+2
+[  40]    0234: BF 40 00                              lea di,msv1
+[  41]    0237: F3 A6                                 repe cmpsb
+[  42]    0239: 74 1A                                 je intb1
+[  43]    023B: BE 52 00                              lea si,str+2
+[  44]    023E: BF 48 00                              lea di,msv2
+[  45]    0241: F3 A6                                 repe cmpsb
+[  46]    0243: 74 10                                 je intb1
+[  47]    0245:                                       nhaplai:
+[  48]    0245: B4 09 BA 22 00 CD 21                  inchuoi msg3
+[  49]    024C: B4 09 BA 3D 00 CD 21                  inchuoi xdong
+[  50]    0253: EB C2                                 jmp nhapmsv
+[  51]    0255:                                       intb1:
+[  52]    0255: B4 09 BA 0D 00 CD 21                  inchuoi msg2
+[  53]        :                                       
+[  54]        :                                       ; count
+[  55]    025C:                                       nhap_chuoi:
+[  56]    025C: B4 09 BA 78 00 CD 21                  inchuoi msg4
+[  57]    0263: BE A0 00                              lea si,str2
+[  58]    0266: 33 C9                                 xor cx,cx
+[  59]    0268:                                       lap_nhap:
+[  60]    0268: B4 01                                 mov ah,1
+[  61]    026A: CD 21                                 int 21h
+[  62]    026C: 88 04                                 mov [si],al
+[  63]    026E: 46                                    inc si
+[  64]    026F: 41                                    inc cx
+[  65]    0270: FE 06 06 01                           inc count
+[  66]    0274: 3C 0D                                 cmp al,0Dh
+[  67]    0276: 74 02                                 je endString
+[  68]    0278: EB EE                                 jmp lap_nhap
+[  69]    027A:                                       endString:
+[  70]    027A: B4 09 BA 87 00 CD 21                  inchuoi msg5
+[  71]    0281: BB 0A 00                              mov bx,10
+[  72]    0284: 33 C0                                 xor ax,ax
+[  73]    0286: A0 06 01                              mov al,count
+[  74]    0289: 2C 01                                 sub al,1
+[  75]    028B: 33 C9                                 xor cx,cx
+[  76]    028D:                                       lapchia:
+[  77]    028D: BA 00 00                              mov dx,0
+[  78]    0290: F7 F3                                 div bx
+[  79]    0292: 41                                    inc cx
+[  80]    0293: 52                                    push dx
+[  81]    0294: 3C 00                                 cmp al,0
+[  82]    0296: 74 02                                 je ht
+[  83]    0298: EB F3                                 jmp lapchia
+[  84]    029A:                                       ht:
+[  85]    029A: 5A                                    pop dx
+[  86]    029B: 80 C2 30                              add dl,30h
+[  87]    029E: B4 02                                 mov ah,2
+[  88]    02A0: CD 21                                 int 21h
+[  89]    02A2: 49                                    dec cx
+[  90]    02A3: 83 F9 00                              cmp cx,0
+[  91]    02A6: 75 F2                                 jne ht
+[  92]    02A8: EB 00                                 jmp thoat
+[  93]        :                                       
+[  94]    02AA:                                       thoat:
+[  95]    02AA: B4 4C                                 mov ah,4ch
+[  96]    02AC: CD 21                                 int 21h
+[  97]        :                                       main endp
+[  98]        :                                       end main
+[  99]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: AE      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 23      -   check sum (l.byte)
+0013: 84      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 21      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 21      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

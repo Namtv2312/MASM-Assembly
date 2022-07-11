@@ -1,0 +1,58 @@
+inchuoi MACRO chuoi
+MOV AH, 9h
+LEA DX, chuoi
+INT 21h
+ENDM
+DSEG SEGMENT
+msg1 DB "Hay nhap so nhi phan 8 bit: $"
+msg2 DB "So nhi phan da nhap la: $"
+xdong DB 10, 13, ‘$’
+sobin DB ? ; luu tr? s? nh? phân nh?n du?c
+DSEG ENDS
+CSEG SEGMENT
+ASSUME CS:CSEG, DS:DSEG
+begin: MOV AX, DSEG
+MOV DS, AX
+inchuoi msg1
+CALL bin_in
+MOV sobin, BL
+inchuoi xdong
+inchuoi msg2
+MOV BL, sobin
+CALL bin_out
+MOV AH, 01
+INT 21h
+MOV AH, 4Ch ; thoat kh?i chuong trình
+INT 21h
+
+bin_in PROC
+MOV BL, 0 ; Xóa BL
+MOV CX, 8 ; nh?p d? 8 bit thì d?ng
+nhap:MOV AH, 01h ; Hàm nh?p ký t?
+INT 21h
+CMP AL, 0Dh ; n?u là phím Enter thì thôi nh?p
+JZ exit ; không ph?i Enter thì d?i sang bit
+SHL BL, 1 ; D?ch trái BL 1 bit
+SUB AL, 30h ; Ký s? - 30h = s?
+ADD BL, AL ; Chuy?n bit t? AL sang BL luu tr?
+LOOP nhap
+exit:RET
+bin_in ENDP
+
+bin_out PROC
+MOV CX, 8 ; Xu?t 8 bit trong BL ra M.Hình
+xuat:MOV DL, 0
+SHL BL, 1 ; CF ch?a MSB, xu?t ra màn hình
+RCL DL, 1 ; dua CF vào LSB c?a DL
+ADD DL, 30h ; S? + 30h = Ký s?
+MOV AH, 02h ; In ra màn hình
+INT 21h
+LOOP xuat
+RET
+bin_out ENDP
+CSEG ENDS
+END begin
+
+
+
+; [SOURCE]: G:\Program File\emu8086\MySource\BUOI5.bai_2a.asm

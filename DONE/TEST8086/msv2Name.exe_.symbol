@@ -1,0 +1,29 @@
+< THE SYMBOL TABLE >  msv2Name.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+MSG1                     	00000     	1         	VAR       	data      
+MSG2                     	0000D     	1         	VAR       	data      
+MSG3                     	00022     	1         	VAR       	data      
+XDONG                    	0003D     	1         	VAR       	data      
+MSV1                     	00040     	1         	VAR       	data      
+MSV2                     	00048     	1         	VAR       	data      
+STR                      	00050     	1         	VAR       	data      
+MSG4                     	00078     	1         	VAR       	data      
+MSG5                     	00084     	1         	VAR       	data      
+CODE                     	00019     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+NHAPMSV                  	00007     	-1        	LABEL     	code      
+KIEMTRA                  	00017     	-1        	LABEL     	code      
+NHAPLAI                  	0002D     	-1        	LABEL     	code      
+INTB1                    	0003D     	-1        	LABEL     	code      
+GIAITHUA                 	00062     	-1        	LABEL     	code      
+LAPPUSH                  	0006E     	-1        	LABEL     	code      
+HIENTHI                  	0007C     	-1        	LABEL     	code      
+THOAT                    	00083     	-1        	LABEL     	code      
+===================================================================================================
+[ 10/07/2022  --  20:25:04 ] 
+< END >
+ 

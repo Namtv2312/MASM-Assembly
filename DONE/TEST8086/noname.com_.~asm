@@ -1,0 +1,14 @@
+org 100h
+mov dx, offset buffer
+mov ah, 0ah
+int 21h
+jmp print
+buffer db 100 dup("$")
+print:
+xor bx, bx
+
+mov dx, offset buffer
+mov ah, 9
+int 21h
+ret
+

@@ -1,0 +1,128 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+AT160632_ASM2.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 11/07/2022  --  14:52:33 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       inchuoi macro chuoi
+[   3]        :                                       mov ah,9
+[   4]        :                                       lea dx,chuoi
+[   5]        :                                       int 21h
+[   6]        :                                       endm
+[   7]        :                                       .stack 100h
+[   8]        :                                       .data
+[   9]        :                                       
+[  10]        :                                       
+[  11]    0100: 00 00 00 00 00 00 00 00 00 00 00 00   filename db 30 dup(0)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00                   
+[  12]    011E: 0A 0D 4E 68 61 70 20 74 65 6E 20 66   output1 db 10,13,"Nhap ten file: $"
+                69 6C 65 3A 20 24                   
+[  13]    0130: 0A 0D 4E 68 61 70 20 6E 6F 69 20 64   output2 db 10,13,"Nhap noi dung file: $"
+                75 6E 67 20 66 69 6C 65 3A 20 24    
+[  14]    0147: 0A 0D 4E 68 61 70 20 74 68 61 6E 68   output3 db 10,13,"Nhap thanh cong$"
+                20 63 6F 6E 67 24                   
+[  15]    0159: 64 00 24 24 24 24 24 24 24 24 24 24   str1 db 100,?,100 dup("$")
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24                   
+[  16]    01BF: 00 00                                 pf dw ?
+[  17]        :                                       .code
+[  18]    01D0:                                       main proc
+[  19]    01D0: B8 10 00                              mov ax,@data
+[  20]    01D3: 8E D8                                 mov ds,ax
+[  21]        :                                       
+[  22]        :                                       ;create new file
+[  23]    01D5: B4 09 BA 1E 00 CD 21                  inchuoi output1
+[  24]    01DC: BE 00 00                              mov si,0
+[  25]    01DF:                                       nhap_filename:
+[  26]    01DF: B4 01                                 mov ah,1
+[  27]    01E1: CD 21                                 int 21h
+[  28]    01E3: 3C 0D                                 cmp al,0Dh
+[  29]    01E5: 74 05                                 je taofile
+[  30]    01E7: 88 04                                 mov filename[si],al
+[  31]    01E9: 46                                    inc si
+[  32]    01EA: EB F3                                 jmp nhap_filename
+[  33]    01EC:                                       taofile:
+[  34]    01EC: B4 3C                                 mov ah,3ch
+[  35]    01EE: BA 00 00                              lea dx,filename
+[  36]    01F1: B9 00 00                              mov cx,0 ;thuoc tinh cua file
+[  37]    01F4: CD 21                                 int 21h  ;ax = file handle (tep xu li)
+[  38]    01F6:                                       nhap_ndfile:
+[  39]    01F6: A3 BF 00                              mov pf,ax ;cat file, gan con tro file cho buffer
+[  40]    01F9: B4 09 BA 30 00 CD 21                  inchuoi output2
+[  41]    0200: B4 0A                                 mov ah,0Ah
+[  42]    0202: BA 59 00                              lea dx,str1
+[  43]    0205: CD 21                                 int 21h
+[  44]    0207: B4 40                                 mov ah,40h
+[  45]    0209: 8B 1E BF 00                           mov bx,pf ;truyen file handle vao trong bx, gan con tro
+[  46]    020D: 33 C9                                 xor cx,cx
+[  47]    020F: 8A 0E 5A 00                           mov cl,[str1+1]  ;so byte de viet
+[  48]    0213: BA 5B 00                              lea dx,str1+2   ;du lieu de viet vao file
+[  49]    0216: CD 21                                 int 21h
+[  50]    0218: B4 3E                                 mov ah,3eh
+[  51]    021A: 8B 1E BF 00                           mov bx,pf
+[  52]    021E: CD 21                                 int 21h
+[  53]    0220: B4 09 BA 47 00 CD 21                  inchuoi output3
+[  54]        :                                       
+[  55]    0227:                                       thoat:
+[  56]    0227: B4 4C                                 mov ah,4ch
+[  57]    0229: CD 21                                 int 21h
+[  58]        :                                       main endp
+[  59]        :                                       end main
+[  60]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 2B      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 2F      -   check sum (l.byte)
+0013: F7      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 1D      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 1D      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

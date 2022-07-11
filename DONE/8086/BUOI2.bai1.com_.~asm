@@ -1,0 +1,10 @@
+org 100h
+mov dx, offset msg
+mov ah, 9
+int 21h
+ret
+msg db "89 $"
+
+
+
+; [SOURCE]: E:\Desktop\8086\BUOI2.bai1.asm

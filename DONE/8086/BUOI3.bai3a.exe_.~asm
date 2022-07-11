@@ -1,0 +1,37 @@
+DSEG SEGMENT
+tbao1 DB "Ky tu HOA.$"
+tbao2 DB "Ky tu thuong.$"
+DSEG ENDS
+CSEG SEGMENT
+ASSUME CS: CSEG, DS: DSEG
+start:
+mov ax, DSEG
+mov ds, ax
+
+mov ah, 01h
+int 21h
+
+cmp al,'Z'
+ja nhan
+jmp exit
+
+nhan:
+mov ah, 09 ; in "Ky tu thuong"
+lea dx, tbao2
+int 21h
+mov ah,4ch
+int 21h
+
+exit:
+mov ah, 9
+lea dx, tbao1
+int 21h
+mov ah, 4Ch ; tr? v? h? di?u hành
+int 21h
+CSEG ENDS
+END start
+
+
+
+
+; [SOURCE]: G:\Program File\emu8086\MySource\BUOI3.bai3a.asm

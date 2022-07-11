@@ -1,0 +1,109 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+BUOI2.bai5.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 24/05/2022  --  20:17:47 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model    small
+[   2]        :                                       .stack
+[   3]        :                                       .data
+[   4]    0100: 48 61 79 20 6E 68 61 70 20 6D 6F 74   TBao1    db    "Hay nhap mot ky tu: $"
+                20 6B 79 20 74 75 3A 20 24          
+[   5]    0115: 0D 0A 4B 79 20 74 75 20 64 61 20 6E   TBao2    db    0DH,0AH,"Ky tu da nhap: $"
+                68 61 70 3A 20 24                   
+[   6]    0127: 0D 0A 4B 79 20 74 75 20 74 72 75 6F   TBao3   db    0DH,0AH,"Ky tu truoc ky tu da nhap: $"
+                63 20 6B 79 20 74 75 20 64 61 20 6E 
+                68 61 70 3A 20 24                   
+[   7]    0145: 0D 0A 4B 79 20 74 75 20 73 61 75 20   TBao4   db    0DH,0AH,"Ky tu sau ky tu da nhap: $"
+                6B 79 20 74 75 20 64 61 20 6E 68 61 
+                70 3A 20 24                         
+[   8]    0161: 00                                    KyTu    db    ?
+[   9]        :                                       .code
+[  10]        :                                       
+[  11]    0170: B8 10 00                              Mov ax,@data
+[  12]    0173: 8E D8                                 Mov ds,ax
+[  13]        :                                       
+[  14]    0175: BA 00 00                              Lea dx, TBao1
+[  15]    0178: B4 09                                 Mov ah, 9
+[  16]    017A: CD 21                                 int 21h
+[  17]        :                                       
+[  18]    017C: B4 01                                 Mov ah, 1
+[  19]    017E: CD 21                                 Int 21h
+[  20]    0180: A2 61 00                              Mov KyTu, al
+[  21]        :                                       
+[  22]    0183: BA 15 00                              lea dx, TBao2
+[  23]    0186: B4 09                                 mov ah, 9
+[  24]    0188: CD 21                                 int 21h
+[  25]        :                                       
+[  26]    018A: B4 02                                 Mov ah, 2
+[  27]    018C: 8A 16 61 00                           Mov dl, KyTu
+[  28]    0190: CD 21                                 Int 21h
+[  29]        :                                       
+[  30]    0192: BA 27 00                              lea dx, TBao3
+[  31]    0195: B4 09                                 mov ah, 9
+[  32]    0197: CD 21                                 int 21h
+[  33]    0199: B4 02                                 mov ah, 2
+[  34]    019B: 8A 16 61 00                           mov dl, KyTu
+[  35]    019F: FE CA                                 dec dl
+[  36]    01A1: CD 21                                 int 21h
+[  37]        :                                       
+[  38]    01A3: BA 45 00                              lea dx, TBao4
+[  39]    01A6: B4 09                                 mov ah, 9
+[  40]    01A8: CD 21                                 int 21h
+[  41]    01AA: B4 02                                 mov ah, 2
+[  42]    01AC: 8A 16 61 00                           mov dl, KyTu
+[  43]    01B0: FE C2                                 inc dl
+[  44]    01B2: CD 21                                 int 21h
+[  45]    01B4: B4 4C                                 mov ah, 4Ch
+[  46]    01B6: CD 21                                 int 21h
+[  47]        :                                       end
+[  48]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: B8      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: A7      -   check sum (l.byte)
+0013: 0E      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 17      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 17      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

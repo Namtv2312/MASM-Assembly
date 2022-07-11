@@ -1,0 +1,78 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+cmpsb.com_ -- emu8086 assembler version: 4.08  
+ 
+[ 10/07/2022  --  17:24:18 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       
+[   2]        :                                       
+[   3]        :                                       ; how to use cmpsb instruction to compare byte strings.
+[   4]        :                                       
+[   5]        :                                       name "cmpsb"
+[   6]        :                                       
+[   7]        :                                       
+[   8]        :                                       org     100h
+[   9]        :                                       
+[  10]        :                                       ; set forward direction:
+[  11]    0100: FC                                    cld
+[  12]        :                                       
+[  13]        :                                       ; load source into ds:si,
+[  14]        :                                       ; load target into es:di:
+[  15]    0101: 8C C8                                 mov     ax, cs
+[  16]    0103: 8E D8                                 mov     ds, ax
+[  17]    0105: 8E C0                                 mov     es, ax
+[  18]    0107: BE 27 01                              lea     si, str1
+[  19]    010A: BF 32 01                              lea     di, str2
+[  20]        :                                       
+[  21]        :                                       ; set counter to string length:
+[  22]    010D: B9 0B 00                              mov     cx, size
+[  23]        :                                       
+[  24]        :                                       ; compare until equal:
+[  25]    0110: F3 A6                                 repe    cmpsb
+[  26]    0112: 75 08                                 jnz     not_equal
+[  27]        :                                       
+[  28]        :                                       ; "yes" - equal!
+[  29]    0114: B0 79                                 mov     al, 'y'
+[  30]    0116: B4 0E                                 mov     ah, 0eh
+[  31]    0118: CD 10                                 int     10h
+[  32]        :                                       
+[  33]    011A: EB 06                                 jmp     exit_here
+[  34]        :                                       
+[  35]    011C:                                       not_equal:
+[  36]        :                                       
+[  37]        :                                       ; "no" - not equal!
+[  38]    011C: B0 6E                                 mov     al, 'n'
+[  39]    011E: B4 0E                                 mov     ah, 0eh
+[  40]    0120: CD 10                                 int     10h
+[  41]        :                                       
+[  42]    0122:                                       exit_here:
+[  43]        :                                       
+[  44]        :                                       	; wait for any key press:
+[  45]    0122: B4 00                                 	mov ah, 0
+[  46]    0124: CD 16                                 	int 16h
+[  47]        :                                       
+[  48]    0126: C3                                    ret
+[  49]        :                                       
+[  50]        :                                       ; strings must have equal lengths:
+[  51]    0127:                                       x1:
+[  52]    0127: 74 65 73 74 20 73 74 72 69 6E 67      str1 db 'test string'
+[  53]    0132: 74 65 73 74 20 73 74 72 69 6E 67      str2 db 'test string'
+[  54]    013D:                                       size = ($ - x1) / 2
+[  55]        :                                       
+[  56]        :                                       
+[  57]        :                                       
+[  58]        :                                       
+[  59]        :                                       
+[  60]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================

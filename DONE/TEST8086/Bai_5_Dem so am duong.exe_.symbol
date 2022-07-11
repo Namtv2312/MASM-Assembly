@@ -1,0 +1,37 @@
+< THE SYMBOL TABLE >  Bai_5_Dem so am duong.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+MSG1                     	00000     	1         	VAR       	data      
+MSG2                     	0000B     	1         	VAR       	data      
+MSG3                     	00031     	1         	VAR       	data      
+XDONG                    	00044     	1         	VAR       	data      
+MSV1                     	00047     	1         	VAR       	data      
+MSV2                     	0004F     	1         	VAR       	data      
+STR                      	00057     	1         	VAR       	data      
+CHUOI                    	000BD     	1         	VAR       	data      
+MSG4                     	000C5     	1         	VAR       	data      
+MSG5                     	000E2     	1         	VAR       	data      
+X                        	000FC     	2         	VAR       	data      
+Y                        	000FE     	2         	VAR       	data      
+CODE                     	00020     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+NHAPMSV                  	00007     	-1        	LABEL     	code      
+KIEMTRA                  	00022     	-1        	LABEL     	code      
+NHAPLAI                  	0003B     	-1        	LABEL     	code      
+INTB1                    	0004B     	-1        	LABEL     	code      
+KTR_CHUOI                	00059     	-1        	LABEL     	code      
+SODUONG                  	00062     	-1        	LABEL     	code      
+SOAM                     	00069     	-1        	LABEL     	code      
+SO0                      	00070     	-1        	LABEL     	code      
+THOAT                    	00091     	-1        	LABEL     	code      
+HIENTHI_DEC              	00095     	-1        	NEAR      	code      
+LAPPUSH2                 	0009A     	-1        	LABEL     	code      
+HIENTHI2                 	000A7     	-1        	LABEL     	code      
+THOAT2                   	000B1     	-1        	LABEL     	code      
+===================================================================================================
+[ 10/07/2022  --  20:53:55 ] 
+< END >
+ 

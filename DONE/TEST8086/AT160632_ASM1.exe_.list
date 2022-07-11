@@ -1,0 +1,114 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+AT160632_ASM1.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 11/07/2022  --  14:52:13 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       inchuoi macro chuoi
+[   3]        :                                       mov ah,9
+[   4]        :                                       lea dx,chuoi
+[   5]        :                                       int 21h
+[   6]        :                                       endm
+[   7]        :                                       .stack 100h
+[   8]        :                                       .data
+[   9]    0100: 4E 68 61 70 20 76 61 6F 20 74 65 6E   msg1 db "Nhap vao ten SV: $"
+                20 53 56 3A 20 24                   
+[  10]    0112: 0A 0D 4D 61 20 53 69 6E 68 20 56 69   msg2 db 10,13,"Ma Sinh Vien la: AT160632$"
+                65 6E 20 6C 61 3A 20 41 54 31 36 30 
+                36 33 32 24                         
+[  11]    012E: 0A 0D 54 68 6F 6E 67 20 74 69 6E 20   msg3 db 10,13,"Thong tin sai!!!Nhap lai$"
+                73 61 69 21 21 21 4E 68 61 70 20 6C 
+                61 69 24                            
+[  12]    0149: 0A 0D 24                              xdong db 10,13,"$"
+[  13]    014C: 54 72 61 6E 20 56 61 6E 20 4E 61 6D   msv1 db "Tran Van Nam"
+                                                    
+[  14]    0158: 1E 00 24 24 24 24 24 24 24 24 24 24   str 30,?,30 dup("$")
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24             
+[  15]        :                                       
+[  16]        :                                       .code
+[  17]    0180:                                       main proc
+[  18]    0180: B8 10 00                              mov ax,@data
+[  19]    0183: 8E D8                                 mov ds,ax
+[  20]    0185: 8E C0                                 mov es,ax
+[  21]        :                                       ;nhap msv
+[  22]    0187:                                       nhapmsv:
+[  23]    0187: B4 09 BA 00 00 CD 21                  inchuoi msg1
+[  24]    018E: B4 0A                                 mov ah,0Ah
+[  25]    0190: BA 58 00                              lea dx,str
+[  26]    0193: CD 21                                 int 21h
+[  27]    0195: 33 C9                                 xor cx,cx
+[  28]        :                                       
+[  29]    0197:                                       kiemtra:
+[  30]    0197: B1 0C                                 mov cl,12
+[  31]    0199: 8A 1E 59 00                           mov bl, [str+1]
+[  32]    019D: 3A CB                                 cmp cl, bl
+[  33]    019F: 75 0A                                 jnz nhaplai
+[  34]    01A1: BE 5A 00                              lea si,str+2
+[  35]    01A4: BF 4C 00                              lea di,msv1
+[  36]    01A7: F3 A6                                 repe cmpsb
+[  37]    01A9: 74 10                                 je intb1
+[  38]        :                                       
+[  39]    01AB:                                       nhaplai:
+[  40]    01AB: B4 09 BA 2E 00 CD 21                  inchuoi msg3
+[  41]    01B2: B4 09 BA 49 00 CD 21                  inchuoi xdong
+[  42]    01B9: EB CC                                 jmp nhapmsv
+[  43]    01BB:                                       intb1:
+[  44]    01BB: B4 09 BA 12 00 CD 21                  inchuoi msg2
+[  45]        :                                       
+[  46]    01C2:                                       thoat:
+[  47]    01C2: B4 4C                                 mov ah,4ch
+[  48]    01C4: CD 21                                 int 21h
+[  49]        :                                       main endp
+[  50]        :                                       end main
+[  51]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: C6      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 20      -   check sum (l.byte)
+0013: 5C      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 18      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 18      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

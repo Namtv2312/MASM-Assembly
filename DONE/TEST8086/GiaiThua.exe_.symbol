@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  GiaiThua.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+Y                        	00000     	2         	VAR       	data      
+X                        	00002     	2         	VAR       	data      
+XDONG                    	00004     	1         	VAR       	data      
+MSG4                     	00007     	1         	VAR       	data      
+MSG5                     	00013     	1         	VAR       	data      
+ERR                      	0001B     	1         	VAR       	data      
+CODE                     	00014     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+INPUT                    	0001B     	-1        	LABEL     	code      
+SOLVE                    	0003C     	-1        	LABEL     	code      
+GIAITHUA                 	00052     	-1        	LABEL     	code      
+LAPPUSH                  	0005E     	-1        	LABEL     	code      
+HIENTHI                  	0006A     	-1        	LABEL     	code      
+THOAT                    	00071     	-1        	LABEL     	code      
+ERROR                    	00075     	-1        	LABEL     	code      
+===================================================================================================
+[ 11/07/2022  --  12:36:50 ] 
+< END >
+ 

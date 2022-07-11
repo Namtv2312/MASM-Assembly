@@ -1,0 +1,19 @@
+< THE SYMBOL TABLE >  AT160632_ASM3.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+FILENAME                 	00000     	1         	VAR       	data      
+OUTPUT                   	0000B     	1         	VAR       	data      
+STR1                     	00018     	1         	VAR       	data      
+PF                       	0002F     	2         	VAR       	data      
+CODE                     	00014     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+TAOFILE                  	00005     	-1        	LABEL     	code      
+NHAP_NDFILE              	0000F     	-1        	LABEL     	code      
+THOAT                    	00032     	-1        	LABEL     	code      
+===================================================================================================
+[ 11/07/2022  --  14:49:58 ] 
+< END >
+ 

@@ -1,0 +1,147 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+BUOI4.bai6.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 31/05/2022  --  20:06:02 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       ;nhap vao hai chuoi so roi tinh tong
+[   2]        :                                       .model small
+[   3]        :                                       .stack 50
+[   4]        :                                       .data
+[   5]    0040: 0A 00 42 42 42 42 42 42 42 42 42 42   so db 10,0, 10 dup($)
+                                                    
+[   6]    004C: 0A 00                                 muoi dw 10
+[   7]    004E: 0A 0D 4B 65 74 20 51 75 61 3A 20 24   xuong db 10,13,'Ket Qua: $'
+                                                    
+[   8]    005A: 00 00                                 B1 Dw 0
+[   9]    005C: 00 00                                 b2 dw 0
+[  10]    005E: 0A 0D 4E 68 61 70 20 76 61 6F 20 73   tb1 db 10,13, 'Nhap vao so dau: $'
+                6F 20 64 61 75 3A 20 24             
+[  11]    0072: 0A 0D 4E 68 61 70 20 76 61 6F 20 73   tb2 db 10,13, 'Nhap vao so thu 2: $'
+                6F 20 74 68 75 20 32 3A 20 24       
+[  12]        :                                       .code
+[  13]    0090:                                       main proc
+[  14]    0090: B8 04 00                              mov ax,@data
+[  15]    0093: 8E D8                                 mov ds,ax
+[  16]        :                                       ;nhap xau
+[  17]    0095: BA 1E 00                              lea dx,tb1
+[  18]    0098: B4 09                                 mov ah,9
+[  19]    009A: CD 21                                 int 21h
+[  20]    009C: 33 C9                                 xor cx,cx
+[  21]    009E: BA 00 00                              lea dx,so
+[  22]    00A1: B4 0A                                 mov ah,0Ah
+[  23]    00A3: CD 21                                 int 21h
+[  24]    00A5: E8 47 00                              call xulichuoi
+[  25]    00A8: 89 16 1A 00                           mov b1,dx
+[  26]        :                                       ;xuong hang
+[  27]    00AC: B4 09                                 mov ah,9
+[  28]    00AE: BA 32 00                              lea dx,tb2
+[  29]    00B1: CD 21                                 int 21h
+[  30]        :                                       
+[  31]        :                                       
+[  32]    00B3: B4 0A                                 mov ah,0Ah
+[  33]    00B5: BA 00 00                              lea dx,so
+[  34]    00B8: CD 21                                 int 21h
+[  35]        :                                       
+[  36]    00BA: B4 09                                 mov ah,9
+[  37]    00BC: BA 0E 00                              lea dx,xuong
+[  38]    00BF: CD 21                                 int 21h
+[  39]        :                                       
+[  40]    00C1: E8 2B 00                              call xulichuoi
+[  41]    00C4: 89 16 1C 00                           mov b2,dx
+[  42]        :                                       
+[  43]        :                                       ;cong b1 va b2 vao dx
+[  44]    00C8: 8B 16 1C 00                           mov dx,b2
+[  45]    00CC: 03 16 1A 00                           add dx,b1
+[  46]        :                                       
+[  47]    00D0: 8B C2                                 mov ax,dx
+[  48]    00D2: 33 C9                                 xor cx,cx
+[  49]    00D4:                                       Lapchia:
+[  50]    00D4: 33 D2                                 xor dx,dx
+[  51]    00D6: F7 36 0C 00                           div muoi
+[  52]    00DA: 83 C2 30                              add dx,30h
+[  53]    00DD: 52                                    push dx
+[  54]    00DE: 41                                    inc cx
+[  55]        :                                       ;xor ah,ah
+[  56]    00DF: 3D 00 00                              cmp ax,0
+[  57]    00E2: 75 F0                                 jne Lapchia
+[  58]    00E4:                                       Hienthi:
+[  59]    00E4: 5A                                    pop dx
+[  60]    00E5: B4 02                                 mov ah,2
+[  61]    00E7: CD 21                                 int 21h
+[  62]    00E9: E2 F9                                 loop Hienthi
+[  63]        :                                       
+[  64]    00EB: B4 4C                                 mov ah,4Ch
+[  65]    00ED: CD 21                                 int 21h
+[  66]        :                                       
+[  67]        :                                       main endp
+[  68]        :                                       
+[  69]    00EF:                                       xulichuoi PROC
+[  70]    00EF: 33 D2                                 xor dx,dx
+[  71]    00F1: 33 C9                                 xor cx,cx
+[  72]    00F3: BE 02 00                              lea si,so + 2
+[  73]    00F6: 8A 0E 01 00                           mov cl,[so+1]
+[  74]    00FA:                                       Lap:
+[  75]    00FA: 8B C2                                 mov ax,dx
+[  76]    00FC: 33 DB                                 xor bx,bx
+[  77]    00FE: 8A 1C                                 mov bl,[si]
+[  78]    0100: 80 EB 30                              sub bl,30h
+[  79]    0103: F7 26 0C 00                           mul muoi
+[  80]    0107: 03 C3                                 add ax,bx
+[  81]    0109: 8B D0                                 mov dx,ax
+[  82]    010B: 46                                    inc si
+[  83]    010C: E2 EC                                 loop Lap
+[  84]    010E: C3                                    ret
+[  85]        :                                       xulichuoi ENDP
+[  86]        :                                       
+[  87]        :                                       end main
+[  88]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 0F      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 32      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: B2      -   check sum (l.byte)
+0013: 85      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 09      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 09      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

@@ -1,0 +1,23 @@
+a. Nạp số 3654h vào thanh ghi BP
+mov bp, 3654h
+b. Sao chép nội dung thanh ghi BP vào thanh ghi SP
+mov sp, bp
+c. Sao chép nội dung thanh ghi AX tới ô nhớ có địa chỉ offset = 9876h
+mov [9876h], AX
+d. Tăng nội dung thanh ghi CX lên 1
+inc CX
+e.  Cộng 07h vào DL
+add dl, 07h
+f. Lập bit MSB của AX lên 1 nhưng không làm ảnh hưởng tới các bit khác
+or ax, 8000h
+g. Lập bit LSB của AX lên 1 nhưng không làm ảnh hưởng tới các bit khác
+or ax, 0001h
+h. Che 4 bit cao của CL
+and cl, 0Fh
+i. Nhân giá trị AH với 08
+mov al, 8
+mul ah
+j. Nghịch đảo 4 bit thấp của thanh ghi DX mà không làm ảnh hưởng tới các bit khác
+xor dx, 000Fh
+k. Lấy bù 2 nội dung thanh ghi BP
+NEG BP

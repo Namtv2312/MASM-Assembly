@@ -1,0 +1,13 @@
+.translate.goog/?_x_tr_sl=en&_x_tr_tl=vi&_x_tr_hl=vi&_x_tr_pto=sc
+Kiến trúc máy tính: 
++ giải thích những gì một máy tính phải làm.
++ cung cấp hành vi chức năng của hệ thống máy tính.
+Cấu trúc máy tính :
++ mối quan hệ cấu trúc giữa các thành phần vật lý hệ thống máy tính.
+
+Kiwwna trúc máy tính
+phân loại bus
+
+Dậy xem biểu đồ, giải sẵn, rồi, đọc qua các hình vẽ khác nhau, giải sẵn, yotube
+B+A
+%USERPROFILE%\AppData\Local\Microsoft\Edge\User Data\Default\Edge Profile.ico

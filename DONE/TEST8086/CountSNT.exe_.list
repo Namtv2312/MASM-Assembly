@@ -1,0 +1,130 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+CountSNT.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 11/07/2022  --  11:23:30 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       inchuoi macro chuoi
+[   3]        :                                       mov ah,9
+[   4]        :                                       lea dx,chuoi
+[   5]        :                                       int 21h
+[   6]        :                                       endm
+[   7]        :                                       .stack 100h
+[   8]        :                                       .data
+[   9]        :                                       
+[  10]    0100: 0A 0D 24                              xdong db 10,13,"$"
+[  11]    0103: 0A 0D 53 6F 20 6C 75 6F 6E 67 20 53   output db 10,13,"So luong SNT trong chuoi la: $"
+                4E 54 20 74 72 6F 6E 67 20 63 68 75 
+                6F 69 20 6C 61 3A 20 24             
+[  12]    0123: 00 01 02 03 04 05 06 07 08 09 FE 0B   chuoi db 0,1,2,3,4,5,6,7,8,9,-2,11,-1,13
+                FF 0D                               
+[  13]    0131: 00 00                                 dem dw 0
+[  14]        :                                       .code
+[  15]    0140:                                       main proc
+[  16]    0140: B8 10 00                              mov ax,@data
+[  17]    0143: 8E D8                                 mov ds,ax
+[  18]    0145: 8E C0                                 mov es,ax
+[  19]        :                                       
+[  20]        :                                       
+[  21]    0147:                                       count_snt:
+[  22]    0147: B4 09 BA 03 00 CD 21                  inchuoi output
+[  23]    014E: B9 0E 00                              mov cx,14 ;so phan tu cua chuoi so co san trong data
+[  24]    0151: BE 23 00                              lea si,chuoi
+[  25]    0154:                                       lap:
+[  26]    0154: BB 02 00                              mov bx,2
+[  27]    0157: 32 E4                                 xor ah,ah
+[  28]    0159: 8A 04                                 mov al,[si]
+[  29]    015B: 3C 02                                 cmp al,2
+[  30]    015D: 72 19                                 jb  khongPhaiSNT
+[  31]    015F: 74 12                                 jz SNT
+[  32]    0161:                                       lap2:
+[  33]    0161: 8A 04                                 mov al,[si]
+[  34]    0163: 33 D2                                 xor dx,dx
+[  35]    0165: F7 F3                                 div bx
+[  36]    0167: 83 FA 00                              cmp dx,0
+[  37]    016A: 74 0C                                 jz khongPhaiSNT
+[  38]    016C: 43                                    inc bx
+[  39]    016D: 8A 04                                 mov al,[si]
+[  40]    016F: 3B D8                                 cmp bx,ax
+[  41]    0171: 72 EE                                 jb lap2
+[  42]    0173:                                       SNT:
+[  43]    0173: 83 06 31 00 01                        add dem,1
+[  44]    0178:                                       khongPhaiSNT:
+[  45]    0178: 46                                    inc si
+[  46]    0179: E2 D9                                 loop lap
+[  47]        :                                       ;in so luong SNT ra man hinh
+[  48]    017B: BB 0A 00                              mov bx,10
+[  49]    017E: A1 31 00                              mov ax,dem
+[  50]    0181: 33 C9                                 xor cx, cx
+[  51]    0183:                                       _push:
+[  52]    0183: 33 D2                                 xor dx,dx
+[  53]    0185: F7 F3                                 div bx
+[  54]    0187: 52                                    push dx
+[  55]    0188: 41                                    inc cx
+[  56]    0189: 3D 00 00                              cmp ax,0
+[  57]    018C: 74 02                                 jz hienthi
+[  58]    018E: EB F3                                 jmp _push
+[  59]        :                                       
+[  60]    0190:                                       hienthi:
+[  61]    0190: 5A                                    pop dx
+[  62]    0191: 83 C2 30                              add dx,30h
+[  63]    0194: B4 02                                 mov ah,2
+[  64]    0196: CD 21                                 int 21h
+[  65]    0198: E2 F6                                 loop hienthi
+[  66]        :                                       
+[  67]    019A:                                       thoat:
+[  68]    019A: B4 4C                                 mov ah,4ch
+[  69]    019C: CD 21                                 int 21h
+[  70]        :                                       main endp
+[  71]        :                                       end main
+[  72]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 9E      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 7A      -   check sum (l.byte)
+0013: 5A      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 14      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 14      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================
