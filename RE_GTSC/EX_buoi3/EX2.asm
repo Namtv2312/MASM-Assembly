@@ -1,0 +1,269 @@
+.386
+.model flat, stdcall
+
+;include d:\masm32\include\user32.inc
+;include D:\masm32\include\kernel32.inc
+;includelib D:\masm32\lib\user32.lib
+;includelib D:\masm32\lib\kernel32.lib
+
+.const
+ID__ABOUT equ 2
+WM_SETFOCUS equ 7h
+WM_DESTROY equ 2
+STYLBTN equ WS_CHILD+BS_DEFPUSHBUTTON+WS_VISIBLE+WS_TABSTOP
+IDC_ARROW equ 32512
+IDI_APPLICATION db "IDI_ICON1" ;equ 32512
+STYLE equ CS_HREDRAW+CS_VREDRAW+CS_GLOBALCLASS
+STYLEDT equ WS_CHILD+WS_VISIBLE+WS_BORDER+WS_TABSTOP
+WS_BORDER equ 800000h
+SW_SHOWNORMAL equ 1
+WM_COMMAND equ 111h
+WS_OVERLAPPEDWINDOW equ 0+WS_TABSTOP+WS_SYSMENU
+WM_CREATE equ 1
+WS_VISIBLE equ 10000000h
+CS_VREDRAW equ 1h
+CS_HREDRAW equ 2h
+WS_SYSMENU equ 80000h
+CS_HREDRAW equ 2h
+BS_DEFPUSHBUTTON equ 1h
+CS_GLOBALCLASS equ 4000h
+WS_CHILD equ 40000000h
+WS_TABSTOP equ 10000h
+EXTERN SetFocus@4:NEAR
+EXTERN SendMessageA@16:NEAR
+EXTERN MessageBoxA@16:NEAR
+EXTERN CreateWindowExA@48:NEAR
+EXTERN DefWindowProcA@16:NEAR
+EXTERN DispatchMessageA@4:NEAR
+EXTERN ExitProcess@4:NEAR
+EXTERN GetMessageA@16:NEAR
+EXTERN GetModuleHandleA@4:NEAR
+EXTERN LoadCursorA@8:NEAR
+EXTERN LoadIconA@8:NEAR
+EXTERN PostQuitMessage@4:NEAR
+EXTERN RegisterClassA@4:NEAR
+EXTERN ShowWindow@8:NEAR
+EXTERN TranslateMessage@4:NEAR
+EXTERN UpdateWindow@4:NEAR
+
+
+MSGSTRUCT STRUC
+ MSHWND DD ?
+ MSMESSAGE DD ?
+ MSWPARAM DD ?
+ MSLPARAM DD ?
+ MSTIME DD ?
+ MSPT DD ?
+MSGSTRUCT ENDS
+
+
+
+WNDCLASS STRUC
+ CLSSTYLE DD ?
+ CLWNDPROC DD ?
+ CLSCBCLSEX DD ?
+ CLSCBWNDEX DD ?
+ CLSHINST DD ?
+ CLSHICON DD ?
+ CLSHCURSOR DD ?
+ CLBKGROUND DD ?
+ CLMENNAME DD ?
+ CLNAME DD ?
+WNDCLASS ENDS
+
+.data
+
+	 NEWHWND DD 0
+	 MSG MSGSTRUCT <?>
+	 WC WNDCLASS <?>
+	 HINST DD 0 ; Application descriptor
+	 TITLENAME DB 'CFF Explorer VIII', 0
+	 CLASSNAME DB 'CLASS32', 0
+	 CPBUT DB 'Dos Header', 0 ; Reverse
+	 CPEDT DB ' ', 0
+	 CPRET DB ' ', 0
+	 CLSBUTN DB 'BUTTON', 0
+	 CLSEDIT DB 'EDIT', 0
+	 HWNDBTN DWORD 0
+	 HWNDEDT DWORD 0
+	 HWNDRET DWORD 0
+	 CAP DB 'Message', 0
+	 MES DB 'Quit Program', 0
+	 CLMENUNAME DB "MENUCFF",0
+	 DlgName db "IDD_DIALOG1",0
+
+
+.code
+Start:
+
+WinMain proc
+	 PUSH 0                   
+	 CALL GetModuleHandleA@4
+	 MOV [HINST], EAX
+	 REG_CLASS:
+	MOV [WC.CLSSTYLE], STYLE
+	 MOV [WC.CLWNDPROC], OFFSET WNDPROC
+	 MOV [WC.CLSCBCLSEX], 0
+	 MOV [WC.CLSCBWNDEX], 0
+	 MOV EAX, [HINST]
+	 MOV [WC.CLSHINST], EAX
+
+
+	 PUSH  OFFSET IDI_APPLICATION
+	 PUSH 0
+	 CALL LoadIconA@8
+	 MOV [WC.CLSHICON], EAX
+
+	 PUSH IDC_ARROW
+	 PUSH 0
+	 CALL LoadCursorA@8
+	 MOV [WC.CLSHCURSOR], EAX
+
+	 MOV [WC.CLBKGROUND],25  ; Window color
+	 MOV DWORD PTR [WC.CLMENNAME],  OFFSET CLMENUNAME
+	 MOV DWORD PTR [WC.CLNAME], OFFSET CLASSNAME
+	 PUSH OFFSET WC
+	 CALL RegisterClassA@4
+
+	 PUSH 0
+	 PUSH [HINST]
+	 PUSH 0
+	 PUSH 0
+	 PUSH 600 ; DY -- Window height
+	 PUSH 600; DX -- Window width
+	 PUSH 200 ; Y -- Coordinate of the top left corner
+	 PUSH 200 ; X -- Coordinate of the top left corner
+	 PUSH WS_OVERLAPPEDWINDOW
+	 PUSH OFFSET TITLENAME ; Window title
+	 PUSH OFFSET CLASSNAME ; Class name
+	 PUSH 0
+	 CALL CreateWindowExA@48
+
+	 CMP EAX, 0
+	 JZ _ERR
+	 MOV [NEWHWND], EAX ; Window 'descriptor
+
+
+	 PUSH SW_SHOWNORMAL
+	 PUSH [NEWHWND]
+	 CALL ShowWindow@8 ; Show newly-created window
+
+
+	 PUSH [NEWHWND]
+	 CALL UpdateWindow@4 ; Command to redraw the visible
+
+
+	MSG_LOOP:
+	 PUSH 0
+	 PUSH 0
+	 PUSH 0
+	 PUSH OFFSET MSG
+	 CALL GetMessageA@16
+	 CMP EAX, 0
+	 JE END_LOOP
+	 PUSH OFFSET MSG
+	 CALL TranslateMessage@4
+	 PUSH OFFSET MSG
+	 CALL DispatchMessageA@4
+	JMP MSG_LOOP
+	END_LOOP:
+
+	 PUSH [MSG.MSWPARAM]
+	 CALL ExitProcess@4
+	_ERR:
+	 JMP END_LOOP
+WinMain endp
+	WNDPROC PROC
+		 PUSH EBP
+		 MOV EBP, ESP
+		 PUSH EBX
+		 PUSH ESI
+		 PUSH EDI
+		 CMP DWORD PTR [EBP+0CH], WM_DESTROY
+		 JE WMDESTROY
+		 CMP DWORD PTR [EBP+0CH], WM_CREATE
+		 JE WMCREATE
+		 CMP DWORD PTR [EBP+0CH], WM_COMMAND
+		 JE WMCOMMND
+		 JMP DEFWNDPROC
+		WMCOMMND:
+		 mov eax, dword ptr [ebp+010h]
+		 cmp eax, ID__ABOUT
+		 jz WMCREATE
+
+	JMP FINISH
+	NODESTROY:
+		 MOV EAX, 0
+		 JMP FINISH
+	WMCREATE:
+
+		 PUSH 0
+		 PUSH [HINST]
+		 PUSH 0
+		 PUSH DWORD PTR [EBP+08H]
+		 PUSH 20 ; DY
+		 PUSH 600 ; DX
+		 PUSH 10 ; Y
+		 PUSH 20 ; X
+		 PUSH STYLEDT
+		 PUSH OFFSET CPRET ; Window name
+		 PUSH OFFSET CLSEDIT ; Class name
+		 PUSH 0
+		 CALL CreateWindowExA@48
+		 MOV HWNDEDT, EAX    
+
+
+
+;		 push 0
+;		 push 0
+;		 push dword ptr [ebp+8]
+;		 push offset DlgName
+;		 push [HINST]
+;		 CALL CreateDialogParamA
+
+
+    PUSH 0
+    PUSH [HINST] 
+    PUSH 0
+    PUSH DWORD PTR [EBP+08H]
+    PUSH 25 ; DY
+    PUSH 100 ; DX
+    PUSH 70 ; Y
+    PUSH 20 ; X
+    PUSH STYLBTN
+    PUSH OFFSET CPBUT ; Window name
+    PUSH OFFSET CLSBUTN ; Class name
+    PUSH 0
+    CALL CreateWindowExA@48
+    MOV HWNDBTN, EAX ; Save the button descriptors
+;---------Set the focus to the edit window
+	PUSH HWNDBTN
+	CALL SetFocus@4
+
+		 MOV EAX, 0
+		 JMP FINISH
+	DEFWNDPROC:
+		 PUSH DWORD PTR [EBP+14H]
+		 PUSH DWORD PTR [EBP+10H]
+		 PUSH DWORD PTR [EBP+0CH]
+		 PUSH DWORD PTR [EBP+08H]
+		 CALL DefWindowProcA@16
+		 JMP FINISH
+	WMDESTROY:
+		 PUSH 0 ; MB_OK
+		 PUSH OFFSET CAP
+		 PUSH OFFSET MES
+		 PUSH DWORD PTR [EBP+08H] ; Window descriptor
+		 CALL MessageBoxA@16
+		 PUSH 0
+		 CALL PostQuitMessage@4 ; WM_QUIT message
+		 MOV EAX, 0
+	FINISH:
+		 POP EDI
+		 POP ESI
+		 POP EBX
+		 POP EBP
+		 RET 16
+WNDPROC ENDP
+
+End Start
