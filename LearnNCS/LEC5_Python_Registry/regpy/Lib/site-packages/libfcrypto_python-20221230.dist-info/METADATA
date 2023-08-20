@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: libfcrypto-python
+Version: 20221230
+Summary: Python bindings module for libfcrypto
+Home-page: https://github.com/libyal/libfcrypto/
+Author: Joachim Metz
+Author-email: joachim.metz@gmail.com
+License: GNU Lesser General Public License v3 or later (LGPLv3+)
+Description-Content-Type: text/plain
+
+Python bindings module for libfcrypto

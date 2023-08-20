@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: libsigscan-python
+Version: 20230109
+Summary: Python bindings module for libsigscan
+Home-page: https://github.com/libyal/libsigscan/
+Author: Joachim Metz
+Author-email: joachim.metz@gmail.com
+License: GNU Lesser General Public License v3 or later (LGPLv3+)
+Description-Content-Type: text/plain
+
+Python bindings module for libsigscan

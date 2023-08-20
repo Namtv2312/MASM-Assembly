@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: libbde-python
+Version: 20221031
+Summary: Python bindings module for libbde
+Home-page: https://github.com/libyal/libbde/
+Author: Joachim Metz
+Author-email: joachim.metz@gmail.com
+License: GNU Lesser General Public License v3 or later (LGPLv3+)
+Description-Content-Type: text/plain
+License-File: COPYING
+License-File: COPYING.LESSER
+License-File: AUTHORS
+
+Python bindings module for libbde
